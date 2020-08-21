@@ -3,17 +3,24 @@ package sample;
 import java.sql.Date;
 
 public class Player {
+
+    private int idPlayer;
     private String firstName;
     private String lastName;
     private String DNI;
     private Date birthDate;
     private String age;
     private boolean hasMedicalClearance;
-    private String isSuspended;
-    private String numberOfSuspensionDays;
     private String comments;
+    private boolean isSuspended;
+    private String numberOfSuspensionDays;
+    private int idTeam;
 
-    public Player(String firstName, String lastName, String DNI, Date birthDate, String age, boolean hasMedicalClearance, String comments, String isSuspended, String numberOfSuspensionDays) {
+    public Player() {
+    }
+
+    public Player(int idPlayer, String firstName, String lastName, String DNI, Date birthDate, String age, boolean hasMedicalClearance, String comments, boolean isSuspended, String numberOfSuspensionDays, int idTeam) {
+        this.idPlayer = idPlayer;
         this.firstName = firstName;
         this.lastName = lastName;
         this.DNI = DNI;
@@ -23,6 +30,15 @@ public class Player {
         this.comments = comments;
         this.isSuspended = isSuspended;
         this.numberOfSuspensionDays = numberOfSuspensionDays;
+        this.idTeam = idTeam;
+    }
+
+    public int getIdPlayer() {
+        return idPlayer;
+    }
+
+    public void setIdPlayer(int idPlayer) {
+        this.idPlayer = idPlayer;
     }
 
     public String getFirstName() {
@@ -73,12 +89,20 @@ public class Player {
         this.hasMedicalClearance = hasMedicalClearance;
     }
 
-    public String getIsSuspended() {
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public boolean isSuspended() {
         return isSuspended;
     }
 
-    public void setIsSuspended(String isSuspended) {
-        this.isSuspended = isSuspended;
+    public void setSuspended(boolean suspended) {
+        isSuspended = suspended;
     }
 
     public String getNumberOfSuspensionDays() {
@@ -89,11 +113,12 @@ public class Player {
         this.numberOfSuspensionDays = numberOfSuspensionDays;
     }
 
-    public String getComments() {
-        return comments;
+    public int getIdTeam() {
+        return idTeam;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setIdTeam(int idTeam) {
+        this.idTeam = idTeam;
     }
 }
+
