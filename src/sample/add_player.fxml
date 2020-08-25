@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CRUDPlayerController">
     <top>
         <AnchorPane prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #1976d2;" BorderPane.alignment="CENTER">
             <children>
@@ -47,12 +47,12 @@
                     </font>
                 </Label>
                 <TextField fx:id="txtDNI" layoutX="100.0" layoutY="154.0" prefWidth="300.0" />
-                <Button fx:id="btnRegister" layoutX="100.0" layoutY="365.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #2196f3;" text="Agregar">
+                <Button fx:id="btnCreate" layoutX="100.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnCreateOnAction" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #2196f3;" text="Agregar">
                     <font>
                         <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnCancel" layoutX="100.0" layoutY="410.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #64b5f6;" text="Cancelar">
+                <Button fx:id="btnBack" layoutX="100.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #64b5f6;" text="Volver al Menu">
                     <font>
                         <Font name="Arial" size="16.0" />
                     </font>

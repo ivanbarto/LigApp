@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
+    <children>
+        <Label layoutX="164.0" layoutY="41.0" text="Menu Principal">
+            <font>
+                <Font name="Arial" size="41.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnCreatePlayer" layoutX="53.0" layoutY="130.0" onAction="#btnCreatePlayerOnAction" mnemonicParsing="false" text="Alta Jugador" />
+        <Button fx:id="btnCancel" layoutX="53.0" layoutY="190.0" onAction="#btnCancelOnAction" mnemonicParsing="false" text="Cerrar" />
+    </children>
+</AnchorPane>
