@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class CRUDPlayerController {
     @FXML
@@ -30,22 +31,32 @@ public class CRUDPlayerController {
     private TextArea areaComments;
 
     Player player;
+    PlayerQueries playerQueries;
 
-    public void btnCreateOnAction(){
-        if(validFields()){
+    public CRUDPlayerController() {
+        this.playerQueries = new PlayerQueries();
+    }
+
+    public void btnCreateOnAction() {
+        if (validFields()) {
+            //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
             player = new Player();
             player.setFirstName(txtFirstName.getText());
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
             player.setBirthDate(convertedBirthDate());
+            //Al atributo Age seguramente borrarlo y calcularlo con un funcion que hay mas abajo
             player.setAge(txtAge.getText());
-            //TODO estos dos que siguen tienen esos datos por defecto, pero ver otra de hacerlo si no es buena practica
             player.setHasMedicalClearance(true);
+            player.setComments(areaComments.getText());
+            player.setSuspended(false);
             player.setNumberOfSuspensionDays(null);
             //TODO ese ID cambiarlo una vez que hayamos creado la clase Team y todo eso
-            //player.setIdTeam(tomar el id del equipo automaticamente);
+            player.setIdTeam(1);
             //TODO falta seguir, toda la parte de la conexion a mysql
-            showSuccessAlert();
+
+            playerQueries.addPlayer(player);
+
         }
 
     }
@@ -65,23 +76,25 @@ public class CRUDPlayerController {
         window.show();
     }
 
-    public void showSuccessAlert(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Alta de jugador");
-        alert.setHeaderText(null);
-        alert.setContentText("¡JUGADOR AGREGADO CON ÉXITO!");
-        alert.showAndWait();
-    }
 
-    private boolean validFields(){
+    private boolean validFields() {
         //TODO Hacer lo necesario para validar que la entrada de datos sea correcta
         return true;
     }
-     private Date convertedBirthDate(){
-         LocalDate localDate = dpBirthDate.getValue();
-         //TODO ver otro metodo de almacenar la fecha, o guardarla como string o long ya que asi está deprecated
-         Date date = new Date(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
-         return date;
-     }
+
+    private Date convertedBirthDate() {
+        LocalDate localDate = dpBirthDate.getValue();
+        //TODO ver otro metodo de almacenar la fecha, o guardarla como string o long ya que asi está deprecated
+        return new Date(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
+    }
+
+    //TODO esto es para poder sacar la edad del tipo para permitirle o no estar en la liga, verlo
+    /*public static String calculateAge(LocalDate birthDate, LocalDate currentDate) {
+        if ((birthDate != null) && (currentDate != null)) {
+            return String.valueOf(Period.between(birthDate, currentDate).getYears());
+        } else {
+            return null;
+        }
+    }*/
 }
 

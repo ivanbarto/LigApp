@@ -81,7 +81,8 @@ public class Player {
         this.age = age;
     }
 
-    public boolean isHasMedicalClearance() {
+    //TODO aca por defecto el metodo se llamaba isHasMedicalClearance ver como llamarlo
+    public boolean getHasMedicalClearance() {
         return hasMedicalClearance;
     }
 
@@ -97,7 +98,8 @@ public class Player {
         this.comments = comments;
     }
 
-    public boolean isSuspended() {
+    //TODO aca por defecto el metodo se llamaba isSuspended, ver eso
+    public boolean getIsSuspended() {
         return isSuspended;
     }
 
