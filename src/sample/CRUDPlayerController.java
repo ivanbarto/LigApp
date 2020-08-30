@@ -44,6 +44,7 @@ public class CRUDPlayerController {
             player.setFirstName(txtFirstName.getText());
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
+            //TODO ver como carajo solucionar que se carggue bien la fecha
             player.setBirthDate(convertedBirthDate());
             //Al atributo Age seguramente borrarlo y calcularlo con un funcion que hay mas abajo
             player.setAge(txtAge.getText());
@@ -53,7 +54,6 @@ public class CRUDPlayerController {
             player.setNumberOfSuspensionDays(null);
             //TODO ese ID cambiarlo una vez que hayamos creado la clase Team y todo eso
             player.setIdTeam(1);
-            //TODO falta seguir, toda la parte de la conexion a mysql
 
             playerQueries.addPlayer(player);
 

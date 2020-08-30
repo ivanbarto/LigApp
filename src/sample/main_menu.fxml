@@ -13,7 +13,8 @@
                 <Font name="Arial" size="41.0" />
             </font>
         </Label>
-        <Button fx:id="btnCreatePlayer" layoutX="53.0" layoutY="130.0" onAction="#btnCreatePlayerOnAction" mnemonicParsing="false" text="Alta Jugador" />
-        <Button fx:id="btnCancel" layoutX="53.0" layoutY="190.0" onAction="#btnCancelOnAction" mnemonicParsing="false" text="Cerrar" />
+        <Button fx:id="btnCreatePlayer" layoutX="50.0" layoutY="130.0" onAction="#btnCreatePlayerOnAction" mnemonicParsing="false" text="Alta Jugador" />
+        <Button fx:id="btnCreateTeam" layoutX="50.0" layoutY="180.0" onAction="#btnCreateTeamOnAction" mnemonicParsing="false" text="Alta Equipo" />
+        <Button fx:id="btnCancel" layoutX="450.0" layoutY="230.0" onAction="#btnCancelOnAction" mnemonicParsing="false" text="Cerrar" />
     </children>
 </AnchorPane>

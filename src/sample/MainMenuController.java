@@ -15,6 +15,8 @@ public class MainMenuController {
     private Button btnCancel;
     @FXML
     private Button btnCreatePlayer;
+    @FXML
+    private Button btnCreateTeam;
 
     public void btnCancelOnAction(ActionEvent event){
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -30,6 +32,17 @@ public class MainMenuController {
         //Esta linea toma la informacion del stage
         //Sacamos la scene de donde viene el boton, y a ese su respectiva stage.
         Stage window = (Stage) btnCreatePlayer.getScene().getWindow();
+
+        window.setScene(createPlayerScene);
+        window.show();
+    }
+
+    public void btnCreateTeamOnAction(ActionEvent event) throws IOException {
+        //TODO El fxml de abajo luego cambiarlo cuando hagamos el CRUD, por ahora solo tiene add
+        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("add_team.fxml"));
+        Scene createPlayerScene = new Scene(createPlayerParent);
+
+        Stage window = (Stage) btnCreateTeam.getScene().getWindow();
 
         window.setScene(createPlayerScene);
         window.show();

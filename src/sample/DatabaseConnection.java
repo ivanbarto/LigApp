@@ -6,9 +6,11 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     private Connection databaseLink = null;
     private String databaseName = "bdligapp";
-    private String databaseUser = "root";
+    private String databaseUser = "fedecurto98";
     private String databasePassword = "654654654Da";
-    private String url = "jdbc:mysql://localhost/" + databaseName + "?useSSL=false";
+    private String host = "db4free.net";
+    private String port = "3306";
+    private String url = "jdbc:mysql://" + host + ":"+ port +"/" + databaseName + "?useSSL=false";
 
     public Connection getConnection(){
 
