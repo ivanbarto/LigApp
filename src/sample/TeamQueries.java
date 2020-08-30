@@ -6,15 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TeamQueries {
+
+    private final String ADD_TEAM_QUERY = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
+
     DatabaseConnection dbConnection;
 
     public TeamQueries() { this.dbConnection = new DatabaseConnection(); }
 
     public void addTeam(Team team) {
         try {
-            String sql = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
 
-            PreparedStatement ps = dbConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(ADD_TEAM_QUERY);
             ps.setString(1,team.getName());
             ps.setString(2,team.getShortName());
             ps.setBlob(3,team.getShieldImage());

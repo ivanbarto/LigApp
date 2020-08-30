@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class PlayerQueries {
+
+    private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,age,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
     DatabaseConnection dbConnection;
 
     public PlayerQueries() {
@@ -14,9 +17,8 @@ public class PlayerQueries {
 
     public void addPlayer(Player player){
         try {
-            String sql = "INSERT INTO player (firstName,lastName,DNI,birthDate,age,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-            PreparedStatement ps = dbConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(ADD_PLAYER_QUERY);
             ps.setString(1, player.getFirstName());
             ps.setString(2, player.getLastName());
             ps.setString(3, player.getDNI());
