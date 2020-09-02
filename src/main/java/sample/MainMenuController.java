@@ -22,10 +22,23 @@ public class MainMenuController {
     private TableView<Player> tbvPlayer;
     @FXML
     private TableView<Team> tbvTeam;
+    @FXML
+    private Button btnTrackFace;
+
 
     public void btnCancelOnAction(ActionEvent event){
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+    }
+
+    public void btnTrackFaceOnAction(ActionEvent event) throws IOException {
+        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("/fxml/camera_frame.fxml"));
+        Scene createPlayerScene = new Scene(createPlayerParent);
+
+        Stage window = (Stage) btnTrackFace.getScene().getWindow();
+
+        window.setScene(createPlayerScene);
+        window.show();
     }
 
     //este metodo abre el formulario de alta jugador al tocar el boton

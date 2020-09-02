@@ -17,8 +17,25 @@ public class Main extends Application {
     @FXML
     private TableView<Team> tbvTeam;
 
+//    static {
+//        nu.pattern.OpenCV.loadShared();
+//        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
+//    }
+
+    static {
+        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
+//        try{
+//            nu.pattern.OpenCV.loadShared();
+//        }catch (Exception e){
+//            System.err.println(e);
+//        }
+        nu.pattern.OpenCV.loadShared();
+
 
         PlayerQueries playerQueries = new PlayerQueries();
 
@@ -37,8 +54,6 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-
 
 
     }
