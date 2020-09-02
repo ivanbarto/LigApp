@@ -11,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         //TODO por ahora entra directo a main menu pero despues poner el login
         Parent root = FXMLLoader.load(getClass().getResource("main_menu.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);

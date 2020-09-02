@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class PlayerQueries {
 
     private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,age,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
 
     DatabaseConnection dbConnection;
 
@@ -15,7 +16,7 @@ public class PlayerQueries {
         this.dbConnection = new DatabaseConnection();
     }
 
-    public void addPlayer(Player player){
+    public void addPlayer(Player player, boolean playerIsModified){
         try {
 
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(ADD_PLAYER_QUERY);
@@ -34,12 +35,32 @@ public class PlayerQueries {
             ps.close();
             dbConnection.disconnect();
 
-            showSuccessAlert("Alta de Jugador","¡JUGADOR AGREGADO CON ÉXITO!");
-
-
+            if (!playerIsModified){
+                showSuccessAlert("Alta de Jugador","¡JUGADOR AGREGADO CON ÉXITO!");
+            }else {
+                showSuccessAlert("Alta de Jugador","¡JUGADOR MODIFICADO!");
+            }
         } catch (SQLException ex) {
             showSQLErrorAlert(ex,"Fallo insertar jugador en BBDD");
+        }
+    }
 
+    public void removePlayer(int playerId, boolean playerIsModified){
+        try {
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_PLAYER_QUERY);
+
+            ps.setInt(1,playerId);
+
+            ps.execute();
+            ps.close();
+            dbConnection.disconnect();
+
+            if(!playerIsModified){
+                showSuccessAlert("eliminar jugador", "¡JUGADOR ELIMINADO!");
+            }
+
+        }catch (SQLException e){
+            showSQLErrorAlert(e,"Fallo eliminar jugador en BBDD");
         }
     }
 
