@@ -19,7 +19,6 @@ public class FaceQueries {
 
 
 
-
         try{
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(ADD_PLAYER_FACE_QUERY);
 

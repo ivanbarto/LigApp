@@ -9,6 +9,8 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    static {System.loadLibrary("commons-io-2.1.jar");}
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
