@@ -54,7 +54,7 @@ public class CRUDTeamController {
     }
 
     public void backToMainMenu(Button button) throws IOException {
-        Parent mainMenuParent = FXMLLoader.load(getClass().getResource("main_menu.fxml"));
+        Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/fxml/main_menu.fxml"));
         Scene mainMenuScene = new Scene(mainMenuParent);
 
         Stage window = (Stage) button.getScene().getWindow();

@@ -8,14 +8,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-
-    static {System.loadLibrary("commons-io-2.1.jar");}
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
         //TODO por ahora entra directo a main menu pero despues poner el login
-        Parent root = FXMLLoader.load(getClass().getResource("main_menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main_menu.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

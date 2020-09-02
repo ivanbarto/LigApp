@@ -26,7 +26,7 @@ public class MainMenuController {
     //este metodo abre el formulario de alta jugador al tocar el boton
     public void btnCreatePlayerOnAction(ActionEvent event) throws IOException {
         //TODO El fxml de abajo luego cambiarlo cuando hagamos el CRUD, por ahora solo tiene add
-        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("add_player.fxml"));
+        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("/fxml/add_player.fxml"));
         Scene createPlayerScene = new Scene(createPlayerParent);
 
         //Esta linea toma la informacion del stage
@@ -39,7 +39,7 @@ public class MainMenuController {
 
     public void btnCreateTeamOnAction(ActionEvent event) throws IOException {
         //TODO El fxml de abajo luego cambiarlo cuando hagamos el CRUD, por ahora solo tiene add
-        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("add_team.fxml"));
+        Parent createPlayerParent = FXMLLoader.load(getClass().getResource("/fxml/add_team.fxml"));
         Scene createPlayerScene = new Scene(createPlayerParent);
 
         Stage window = (Stage) btnCreateTeam.getScene().getWindow();

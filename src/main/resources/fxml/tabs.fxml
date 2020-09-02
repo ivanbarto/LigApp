@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="21.0" layoutY="121.0" prefHeight="421.0" prefWidth="621.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="btnCreatePlayer" layoutX="47.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnCreatePlayerOnAction" text="Alta Jugador" />
+                  <Button fx:id="btnCancel" layoutX="47.0" layoutY="157.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="25.0" prefWidth="83.0" text="Cancelar" />
+                  <Button fx:id="btnCreateTeam" layoutX="48.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnCreatePlayerOnAction" prefHeight="25.0" prefWidth="83.0" text="Alta Equipo" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane layoutX="65.0" layoutY="99.0" prefHeight="398.0" prefWidth="417.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="MAIN">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="121.0" layoutY="31.0" text="Menu Principal">
+                                       <font>
+                                          <Font name="Arial" size="37.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="PLAYER">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView layoutX="91.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="ID" />
+                                        <TableColumn prefWidth="75.0" text="NOMBRE" />
+                                          <TableColumn prefWidth="75.0" text="APELLIDO" />
+                                          <TableColumn prefWidth="75.0" text="DNI" />
+                                          <TableColumn prefWidth="75.0" text="EDAD" />
+                                          <TableColumn prefWidth="75.0" text="EQUIPO" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="TEAM">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView layoutX="-8.0" layoutY="37.0" prefHeight="369.0" prefWidth="487.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="ID" />
+                                        <TableColumn prefWidth="75.0" text="NOMBRE" />
+                                          <TableColumn prefWidth="75.0" text="ENCARGADO" />
+                                          <TableColumn prefWidth="75.0" text="CORREO" />
+                                          <TableColumn prefWidth="75.0" text="TELEFONO" />
+                                          <TableColumn prefWidth="75.0" text="LIGA" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
