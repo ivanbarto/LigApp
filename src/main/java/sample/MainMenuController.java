@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +18,10 @@ public class MainMenuController {
     private Button btnCreatePlayer;
     @FXML
     private Button btnCreateTeam;
+    @FXML
+    private TableView<Player> tbvPlayer;
+    @FXML
+    private TableView<Team> tbvTeam;
 
     public void btnCancelOnAction(ActionEvent event){
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -47,7 +52,6 @@ public class MainMenuController {
         window.setScene(createPlayerScene);
         window.show();
     }
-
 
 }
 

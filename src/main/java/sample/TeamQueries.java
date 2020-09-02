@@ -1,17 +1,55 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TeamQueries {
 
+    private final int TEAM_FEATURES = 8;
+
     private final String ADD_TEAM_QUERY = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
+    private final String GET_ALL_TEAMS_QUERY = "SELECT * FROM team";
 
     DatabaseConnection dbConnection;
 
     public TeamQueries() { this.dbConnection = new DatabaseConnection(); }
+
+    public ObservableList<Team> getTeams(){
+        ArrayList<Object> objects = new ArrayList<>();
+        ObservableList<Team> teamsList = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_ALL_TEAMS_QUERY);
+
+            ResultSet teamsTable = ps.executeQuery();
+
+            while (teamsTable.next()){
+                Object[] team = new Object[8];
+
+                for (int teamIndex = 0; teamIndex <TEAM_FEATURES ; teamIndex++){
+                    team[teamIndex] = teamsTable.getObject(teamIndex+1);
+                }
+                objects.add(team);
+            }
+
+            for (Object object : objects) {
+                teamsList.add((Team)object);
+            }
+
+            dbConnection.disconnect();
+
+        }catch (SQLException e){
+            showSQLErrorAlert(e,"teams list error");
+        }
+
+        return teamsList;
+    }
 
     public void addTeam(Team team) {
         try {
