@@ -122,7 +122,7 @@ public class FaceController {
                 };
 
                 this.timer = Executors.newSingleThreadScheduledExecutor();
-                this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
+                this.timer.scheduleAtFixedRate(frameGrabber, 0, 66, TimeUnit.MILLISECONDS);
 
                 // update the button content
                 this.btnInitCamera.setText("Cerrar cámara");

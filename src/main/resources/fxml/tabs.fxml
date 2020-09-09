@@ -19,7 +19,8 @@
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btnCreateTeam" layoutX="31.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnCreatePlayerOnAction" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: #2196f3;" text="Alta Equipo">
+                  <Button fx:id="btnCreateTeam" layoutX="31.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnCreateTeamOnAction" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: #2196f3;" text="Alta Equipo">
+
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font></Button>
@@ -56,12 +57,12 @@
                                  <children>
                                     <TableView layoutX="91.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="ID" />
-                                        <TableColumn prefWidth="75.0" text="NOMBRE" />
-                                          <TableColumn prefWidth="75.0" text="APELLIDO" />
-                                          <TableColumn prefWidth="75.0" text="DNI" />
-                                          <TableColumn prefWidth="75.0" text="EDAD" />
-                                          <TableColumn prefWidth="75.0" text="EQUIPO" />
+                                        <TableColumn fx:id="idPlayerColumn" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="NOMBRE" />
+                                          <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="APELLIDO" />
+                                          <TableColumn fx:id="dniColumn" prefWidth="75.0" text="DNI" />
+                                          <TableColumn fx:id="ageColumn" prefWidth="75.0" text="EDAD" />
+                                          <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="EQUIPO" />
                                       </columns>
                                     </TableView>
                                  </children>

@@ -88,11 +88,15 @@ public class PlayerQueries {
                     player[playerIndex] = playersTable.getObject(playerIndex + 1);
                 }
 
+
                 Player playerToAdd = new Player();
                 playerToAdd.setIdPlayer((int)player[0]);
                 playerToAdd.setFirstName((String)player[1]);
-                System.out.println((String)player[1]);
+                System.out.print((String)player[1]);
+                System.out.print(" ");
                 playerToAdd.setLastName((String)player[2]);
+                System.out.print((String)player[2]);
+
                 playerToAdd.setDNI((String)player[3]);
                 //playerToAdd.setBirthDate(Date.valueOf((String)player[4]));
                 playerToAdd.setBirthDate(null);
@@ -102,10 +106,25 @@ public class PlayerQueries {
                 playerToAdd.setComments((String)player[7]);
                 playerToAdd.setNumberOfSuspensionDays((String)player[9]);
                 playerToAdd.setIdTeam((int)player[10]);
+                System.out.println("");
 
+               /* Player playerToAdd = new Player();
+                playerToAdd.setIdPlayer((playersTable.getInt("idPlayer")));
+                playerToAdd.setFirstName(playersTable.getString("firstName"));
+                playerToAdd.setLastName(playersTable.getString("lastName"));
+                playerToAdd.setDNI(playersTable.getString("DNI"));
+                playerToAdd.setBirthDate(null);
+                playerToAdd.setAge(playersTable.getString("age"));
+                playerToAdd.setHasMedicalClearance(false);
+                playerToAdd.setComments(playersTable.getString("comments"));
+                playerToAdd.setSuspended(false);
+                playerToAdd.setNumberOfSuspensionDays(playersTable.getString("numberOfSuspensionDays"));
+                playerToAdd.setIdTeam(playersTable.getInt("idTeam"));
+*/
                 playersList.addAll(playerToAdd);
             }
 
+            ps.close();
             dbConnection.disconnect();
 
         } catch (SQLException e) {
