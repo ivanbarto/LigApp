@@ -49,7 +49,7 @@ public class MainMenuController{
 
     public MainMenuController() {
         playerQueries = new PlayerQueries();
-        fillTable();
+        //fillTable();
 
 
 
@@ -97,6 +97,8 @@ public class MainMenuController{
         window.show();
     }
 
+
+/*
     public void fillTable(){
         tbvPlayer = new TableView<>();
         idPlayerColumn = new TableColumn<>();
@@ -119,5 +121,7 @@ public class MainMenuController{
         tbvPlayer.getColumns().add(ageColumn);
         tbvPlayer.getColumns().add(idTeamColumn);
     }
+
+ */
 }
 

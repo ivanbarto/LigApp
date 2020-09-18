@@ -1,126 +1,158 @@
 package sample;
 
-import java.sql.Date;
+import javafx.beans.property.*;
+
+import java.time.LocalDate;
 
 public class Player {
 
-    private int idPlayer;
-    private String firstName;
-    private String lastName;
-    private String DNI;
-    private Date birthDate;
-    private String age;
-    private boolean hasMedicalClearance;
-    private String comments;
-    private boolean isSuspended;
-    private String numberOfSuspensionDays;
-    private int idTeam;
+    private final IntegerProperty idPlayer;
+    private final StringProperty firstName;
+    private final StringProperty lastName;
+    private final StringProperty DNI;
+    private final ObjectProperty<LocalDate> birthDate;
+    private final BooleanProperty hasMedicalClearance;
+    private final StringProperty comments;
+    private final BooleanProperty isSuspended;
+    private final StringProperty numberOfSuspensionDays;
+    private final IntegerProperty idTeam;
 
-    public Player() {
+    public Player(){
+        this(0,null,null,null,null,false,null,false,null,0);
     }
 
-    public Player(int idPlayer, String firstName, String lastName, String DNI, Date birthDate, String age, boolean hasMedicalClearance, String comments, boolean isSuspended, String numberOfSuspensionDays, int idTeam) {
-        this.idPlayer = idPlayer;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.DNI = DNI;
-        this.birthDate = birthDate;
-        this.age = age;
-        this.hasMedicalClearance = hasMedicalClearance;
-        this.comments = comments;
-        this.isSuspended = isSuspended;
-        this.numberOfSuspensionDays = numberOfSuspensionDays;
-        this.idTeam = idTeam;
+    public Player(int idPlayer, String firstName, String lastName, String DNI, LocalDate birthDate, boolean hasMedicalClearance, String comments, boolean isSuspended, String numberOfSuspensionDays, int idTeam){
+        this.idPlayer = new SimpleIntegerProperty(idPlayer);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.DNI = new SimpleStringProperty(DNI);
+        this.birthDate = new SimpleObjectProperty<LocalDate>(birthDate);
+        this.hasMedicalClearance = new SimpleBooleanProperty(hasMedicalClearance);
+        this.comments = new SimpleStringProperty(comments);
+        this.isSuspended = new SimpleBooleanProperty(isSuspended);
+        this.numberOfSuspensionDays = new SimpleStringProperty(numberOfSuspensionDays);
+        this.idTeam = new SimpleIntegerProperty(idTeam);
     }
 
     public int getIdPlayer() {
+        return idPlayer.get();
+    }
+
+    public IntegerProperty idPlayerProperty() {
         return idPlayer;
     }
 
     public void setIdPlayer(int idPlayer) {
-        this.idPlayer = idPlayer;
+        this.idPlayer.set(idPlayer);
     }
 
     public String getFirstName() {
+        return firstName.get();
+    }
+
+    public StringProperty firstNameProperty() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName.set(firstName);
     }
 
     public String getLastName() {
+        return lastName.get();
+    }
+
+    public StringProperty lastNameProperty() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName.set(lastName);
     }
 
     public String getDNI() {
+        return DNI.get();
+    }
+
+    public StringProperty DNIProperty() {
         return DNI;
     }
 
     public void setDNI(String DNI) {
-        this.DNI = DNI;
+        this.DNI.set(DNI);
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
+        return birthDate.get();
+    }
+
+    public ObjectProperty<LocalDate> birthDateProperty() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate.set(birthDate);
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    //TODO aca por defecto el metodo se llamaba isHasMedicalClearance ver como llamarlo
     public boolean getHasMedicalClearance() {
+        return hasMedicalClearance.get();
+    }
+
+    public BooleanProperty hasMedicalClearanceProperty() {
         return hasMedicalClearance;
     }
 
     public void setHasMedicalClearance(boolean hasMedicalClearance) {
-        this.hasMedicalClearance = hasMedicalClearance;
+        this.hasMedicalClearance.set(hasMedicalClearance);
     }
 
     public String getComments() {
+        return comments.get();
+    }
+
+    public StringProperty commentsProperty() {
         return comments;
     }
 
     public void setComments(String comments) {
-        this.comments = comments;
+        this.comments.set(comments);
     }
 
-    //TODO aca por defecto el metodo se llamaba isSuspended, ver eso
     public boolean getIsSuspended() {
+        return isSuspended.get();
+    }
+
+    public BooleanProperty isSuspendedProperty() {
         return isSuspended;
     }
 
-    public void setSuspended(boolean suspended) {
-        isSuspended = suspended;
+    public void setIsSuspended(boolean isSuspended) {
+        this.isSuspended.set(isSuspended);
     }
 
     public String getNumberOfSuspensionDays() {
+        return numberOfSuspensionDays.get();
+    }
+
+    public StringProperty numberOfSuspensionDaysProperty() {
         return numberOfSuspensionDays;
     }
 
     public void setNumberOfSuspensionDays(String numberOfSuspensionDays) {
-        this.numberOfSuspensionDays = numberOfSuspensionDays;
+        this.numberOfSuspensionDays.set(numberOfSuspensionDays);
     }
 
     public int getIdTeam() {
+        return idTeam.get();
+    }
+
+    public IntegerProperty idTeamProperty() {
         return idTeam;
     }
 
     public void setIdTeam(int idTeam) {
-        this.idTeam = idTeam;
+        this.idTeam.set(idTeam);
     }
+
 }
 

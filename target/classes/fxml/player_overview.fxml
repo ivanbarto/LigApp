@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PlayerOverviewController">
+   <children>
+       <TableView fx:id="playerTableView" layoutX="50.0" layoutY="55.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="56.0">
+           <columns>
+               <TableColumn fx:id="idPlayerColumn" prefWidth="75.0" text="ID" />
+               <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="NOMBRE" />
+               <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="APELLIDO" />
+               <TableColumn fx:id="dniColumn" prefWidth="75.0" text="DNI" />
+               <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="EQUIPO" />
+           </columns>
+       </TableView>
+      <Label layoutX="230.0" layoutY="20.0" text="aca se deberia ver todo" />
+   </children>
+</AnchorPane>

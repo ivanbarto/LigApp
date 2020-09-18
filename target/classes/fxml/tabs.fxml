@@ -55,13 +55,12 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView layoutX="91.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="playerTableView" layoutX="91.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
                                         <TableColumn fx:id="idPlayerColumn" prefWidth="75.0" text="ID" />
                                         <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="NOMBRE" />
                                           <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="APELLIDO" />
                                           <TableColumn fx:id="dniColumn" prefWidth="75.0" text="DNI" />
-                                          <TableColumn fx:id="ageColumn" prefWidth="75.0" text="EDAD" />
                                           <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="EQUIPO" />
                                       </columns>
                                     </TableView>

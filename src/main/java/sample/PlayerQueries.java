@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class PlayerQueries {
 
     private final int PLAYER_FEATURES = 11;
 
-    private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,age,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
 
@@ -30,13 +31,12 @@ public class PlayerQueries {
             ps.setString(1, player.getFirstName());
             ps.setString(2, player.getLastName());
             ps.setString(3, player.getDNI());
-            ps.setDate(4, player.getBirthDate());
-            ps.setString(5, player.getAge());
-            ps.setBoolean(6, player.getHasMedicalClearance());
-            ps.setString(7, player.getComments());
-            ps.setBoolean(8, player.getIsSuspended());
-            ps.setString(9, player.getNumberOfSuspensionDays());
-            ps.setInt(10, player.getIdTeam());
+            ps.setDate(4, Date.valueOf(player.getBirthDate()));
+            ps.setBoolean(5, player.getHasMedicalClearance());
+            ps.setString(6, player.getComments());
+            ps.setBoolean(7, player.getIsSuspended());
+            ps.setString(8, player.getNumberOfSuspensionDays());
+            ps.setInt(9, player.getIdTeam());
 
             ps.execute();
             ps.close();
@@ -71,8 +71,10 @@ public class PlayerQueries {
         }
     }
 
+
+
+
     public ObservableList<Player> getPlayers() {
-        ArrayList<Object> objects = new ArrayList<>();
         ObservableList<Player> playersList = FXCollections.observableArrayList();
 
         try {
@@ -82,46 +84,20 @@ public class PlayerQueries {
             ResultSet playersTable = ps.executeQuery();
 
             while (playersTable.next()) {
-                Object[] player = new Object[11];
-
-                for (int playerIndex = 0; playerIndex < PLAYER_FEATURES; playerIndex++) {
-                    player[playerIndex] = playersTable.getObject(playerIndex + 1);
-                }
-
 
                 Player playerToAdd = new Player();
-                playerToAdd.setIdPlayer((int)player[0]);
-                playerToAdd.setFirstName((String)player[1]);
-                System.out.print((String)player[1]);
-                System.out.print(" ");
-                playerToAdd.setLastName((String)player[2]);
-                System.out.print((String)player[2]);
-
-                playerToAdd.setDNI((String)player[3]);
-                //playerToAdd.setBirthDate(Date.valueOf((String)player[4]));
-                playerToAdd.setBirthDate(null);
-                playerToAdd.setAge((String)player[5]);
-                //playerToAdd.setHasMedicalClearance((boolean)player[6]);
-                playerToAdd.setHasMedicalClearance(false);
-                playerToAdd.setComments((String)player[7]);
-                playerToAdd.setNumberOfSuspensionDays((String)player[9]);
-                playerToAdd.setIdTeam((int)player[10]);
-                System.out.println("");
-
-               /* Player playerToAdd = new Player();
                 playerToAdd.setIdPlayer((playersTable.getInt("idPlayer")));
                 playerToAdd.setFirstName(playersTable.getString("firstName"));
                 playerToAdd.setLastName(playersTable.getString("lastName"));
                 playerToAdd.setDNI(playersTable.getString("DNI"));
                 playerToAdd.setBirthDate(null);
-                playerToAdd.setAge(playersTable.getString("age"));
                 playerToAdd.setHasMedicalClearance(false);
                 playerToAdd.setComments(playersTable.getString("comments"));
-                playerToAdd.setSuspended(false);
+                playerToAdd.setIsSuspended(false);
                 playerToAdd.setNumberOfSuspensionDays(playersTable.getString("numberOfSuspensionDays"));
                 playerToAdd.setIdTeam(playersTable.getInt("idTeam"));
-*/
-                playersList.addAll(playerToAdd);
+
+                playersList.add(playerToAdd);
             }
 
             ps.close();

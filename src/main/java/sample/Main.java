@@ -37,8 +37,8 @@ public class Main extends Application {
         nu.pattern.OpenCV.loadShared();
 
 
-        PlayerQueries playerQueries = new PlayerQueries();
-
+       // PlayerQueries playerQueries = new PlayerQueries();
+/*
         //estas 3 instrucciones son para generar una columna en una tabla
         TableColumn<Player, String> playerNameColumn = new TableColumn<>("Nombre");
         playerNameColumn.setMinWidth(100);
@@ -47,7 +47,7 @@ public class Main extends Application {
         tbvPlayer = new TableView<>();
         tbvPlayer.setItems(playerQueries.getPlayers());
         tbvPlayer.getColumns().add(playerNameColumn);
-
+*/
 
         //TODO por ahora entra directo a main menu pero despues poner el login
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/tabs.fxml"));

@@ -47,12 +47,12 @@ public class CRUDPlayerController {
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
             //TODO ver como carajo solucionar que se carggue bien la fecha
-            player.setBirthDate(convertedBirthDate());
+            player.setBirthDate(null);
             //Al atributo Age seguramente borrarlo y calcularlo con un funcion que hay mas abajo
-            player.setAge(txtAge.getText());
+            //player.setAge(txtAge.getText());
             player.setHasMedicalClearance(true);
             player.setComments(areaComments.getText());
-            player.setSuspended(false);
+            player.setIsSuspended(false);
             player.setNumberOfSuspensionDays(null);
             //TODO ese ID cambiarlo una vez que hayamos creado la clase Team y todo eso
             player.setIdTeam(1);
