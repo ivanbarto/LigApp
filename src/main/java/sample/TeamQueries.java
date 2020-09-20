@@ -30,18 +30,20 @@ public class TeamQueries {
             ResultSet teamsTable = ps.executeQuery();
 
             while (teamsTable.next()){
-                Object[] team = new Object[8];
+                Team teamToAdd = new Team();
+                teamToAdd.setIdTeam(teamsTable.getInt("idTeam"));
+                teamToAdd.setName(teamsTable.getString("name"));
+                teamToAdd.setShortName(teamsTable.getString("shortName"));
+                teamToAdd.setShieldImage(teamsTable.getBlob("shieldImage"));
+                teamToAdd.setManagerName(teamsTable.getString("managerName"));
+                teamToAdd.setManagerEmail(teamsTable.getString("managerEmail"));
+                teamToAdd.setManagerPhone(teamsTable.getString("managerPhone"));
+                teamToAdd.setIdLeague(teamsTable.getInt("idLeague"));
 
-                for (int teamIndex = 0; teamIndex <TEAM_FEATURES ; teamIndex++){
-                    team[teamIndex] = teamsTable.getObject(teamIndex+1);
-                }
-                objects.add(team);
+                teamsList.add(teamToAdd);
             }
 
-            for (Object object : objects) {
-                teamsList.add((Team)object);
-            }
-
+            ps.close();
             dbConnection.disconnect();
 
         }catch (SQLException e){

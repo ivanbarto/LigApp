@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 public class PlayerQueries {
 
-    private final int PLAYER_FEATURES = 11;
-
     private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";

@@ -8,14 +8,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class Main extends Application {
-    @FXML
-    private TableView<Player> tbvPlayer;
-    @FXML
-    private TableView<Team> tbvTeam;
+
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+    private MainController mainController;
 
 //    static {
 //        nu.pattern.OpenCV.loadShared();
@@ -36,28 +41,95 @@ public class Main extends Application {
 //        }
         nu.pattern.OpenCV.loadShared();
 
-
-       // PlayerQueries playerQueries = new PlayerQueries();
-/*
-        //estas 3 instrucciones son para generar una columna en una tabla
-        TableColumn<Player, String> playerNameColumn = new TableColumn<>("Nombre");
-        playerNameColumn.setMinWidth(100);
-        playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-
-        tbvPlayer = new TableView<>();
-        tbvPlayer.setItems(playerQueries.getPlayers());
-        tbvPlayer.getColumns().add(playerNameColumn);
-*/
-
         //TODO por ahora entra directo a main menu pero despues poner el login
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/tabs.fxml"));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
 
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("LigApp");
+        this.primaryStage.initStyle(StageStyle.UNDECORATED);
+        this.primaryStage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
 
+        initRootLayout();
+
+        //showHomeScreen();
+        //showPlayerOverview();
+        showTeamOverview();
     }
 
+    public void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/rootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showHomeScreen(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/homeScreen.fxml"));
+            AnchorPane homeScreen = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(homeScreen);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showPlayerOverview(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/player_overview.fxml"));
+            AnchorPane playerOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(playerOverview);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTeamOverview(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/team_overview.fxml"));
+            AnchorPane teamOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(teamOverview);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*public void showPersonOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
+            AnchorPane personOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(personOverview);
+
+            // Give the controller access to the main app.
+            PersonOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     public static void main(String[] args) {
         launch(args);
