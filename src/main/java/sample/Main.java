@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,6 +14,8 @@ public class Main extends Application {
     private TableView<Player> tbvPlayer;
     @FXML
     private TableView<Team> tbvTeam;
+
+    public static Stage stage;
 
 //    static {
 //        nu.pattern.OpenCV.loadShared();
@@ -48,6 +48,7 @@ public class Main extends Application {
         tbvPlayer.setItems(playerQueries.getPlayers());
         tbvPlayer.getColumns().add(playerNameColumn);
 */
+        stage = primaryStage;
 
         //TODO por ahora entra directo a main menu pero despues poner el login
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/tabs.fxml"));

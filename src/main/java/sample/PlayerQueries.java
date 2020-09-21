@@ -8,13 +8,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class PlayerQueries {
 
     private final int PLAYER_FEATURES = 11;
 
-    private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam,photo) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
 
@@ -37,6 +36,7 @@ public class PlayerQueries {
             ps.setBoolean(7, player.getIsSuspended());
             ps.setString(8, player.getNumberOfSuspensionDays());
             ps.setInt(9, player.getIdTeam());
+            ps.setString(10,player.getPhoto());
 
             ps.execute();
             ps.close();

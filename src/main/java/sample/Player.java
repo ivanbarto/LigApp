@@ -16,12 +16,14 @@ public class Player {
     private final BooleanProperty isSuspended;
     private final StringProperty numberOfSuspensionDays;
     private final IntegerProperty idTeam;
+    private String photo;
+
 
     public Player(){
-        this(0,null,null,null,null,false,null,false,null,0);
+        this(0,null,null,null,null,false,null,false,null,0, null);
     }
 
-    public Player(int idPlayer, String firstName, String lastName, String DNI, LocalDate birthDate, boolean hasMedicalClearance, String comments, boolean isSuspended, String numberOfSuspensionDays, int idTeam){
+    public Player(int idPlayer, String firstName, String lastName, String DNI, LocalDate birthDate, boolean hasMedicalClearance, String comments, boolean isSuspended, String numberOfSuspensionDays, int idTeam, String photo){
         this.idPlayer = new SimpleIntegerProperty(idPlayer);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
@@ -32,6 +34,15 @@ public class Player {
         this.isSuspended = new SimpleBooleanProperty(isSuspended);
         this.numberOfSuspensionDays = new SimpleStringProperty(numberOfSuspensionDays);
         this.idTeam = new SimpleIntegerProperty(idTeam);
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String base64Encoded){
+        this.photo = base64Encoded;
     }
 
     public int getIdPlayer() {

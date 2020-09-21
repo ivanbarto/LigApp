@@ -3,11 +3,16 @@ package sample.utils;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import org.opencv.core.Mat;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 
 public final class Utils {
 
@@ -45,6 +50,33 @@ public final class Utils {
         Platform.runLater(() -> {
             property.set(value);
         });
+    }
+
+    public static void showError(Exception errorMessage, String title) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(String.valueOf(errorMessage));
+        alert.showAndWait();
+    }
+
+    public static void showSuccess(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static String fileToBase64(File file){
+
+        try {
+            return Base64.getEncoder().encodeToString(Files.readAllBytes(file.toPath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError(e, "Fallo eliminar jugador en BBDD");
+            return "";
+        }
     }
 
     public static BufferedImage matToBufferedImage(Mat original)
