@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:id="rootLayout" fx:controller="sample.MainScreenController">
    <left>
       <VBox prefHeight="400.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="titulo - imagen" />
             <Button mnemonicParsing="false" text="inicio" fx:id="btnHome" onAction="#btnHomeOnClick"/>
             <Button mnemonicParsing="false" text="ligas" fx:id="btnLeagues"/>
-            <Button mnemonicParsing="false" text="equipos" fx:id="btnTeams"/>
+            <Button mnemonicParsing="false" text="equipos" fx:id="btnTeams" onAction="#btnTeamsOnClick"/>
             <Button mnemonicParsing="false" text="jugadores" fx:id="btnPlayers" onAction="#btnPlayersOnClick"/>
             <Button mnemonicParsing="false" text="configuracion" fx:id="btnSettings"/>
             <Button mnemonicParsing="false" text="reconocimiento" fx:id="btnTrackFace"/>

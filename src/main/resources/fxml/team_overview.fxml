@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamOverviewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamOverviewController">
     <children>
-        <TableView fx:id="teamTableView" layoutX="50.0" layoutY="55.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="56.0">
+        <TableView fx:id="teamTableView" layoutX="50.0" layoutY="55.0" prefHeight="250.0" prefWidth="496.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="56.0">
             <columns>
                 <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="NOMBRE" />
@@ -18,5 +15,12 @@
             </columns>
         </TableView>
         <Label layoutX="230.0" layoutY="20.0" text="aca se deberia ver todo lo de equipo" />
+        <HBox layoutX="175.0" layoutY="331.0" prefHeight="40.0" prefWidth="235.0" spacing="20.0">
+            <children>
+                <Button fx:id="btnAdd" mnemonicParsing="false" text="Agregar " />
+                <Button fx:id="btnDelete" mnemonicParsing="false" text="Eliminar" />
+                <Button fx:id="btnUpdate" mnemonicParsing="false" text="Editar" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

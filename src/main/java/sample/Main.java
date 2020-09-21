@@ -1,18 +1,12 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
-<<<<<<< HEAD
-=======
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
->>>>>>> 3b5067140546f5c53e116d1ac4d8594c63268807
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -22,7 +16,6 @@ public class Main extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private MainController mainController;
 
     public static Stage stage;
 
@@ -57,15 +50,16 @@ public class Main extends Application {
 
         //showHomeScreen();
         //showPlayerOverview();
-        showTeamOverview();
+        //showTeamOverview();
     }
 
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
+            /*FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/fxml/rootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = (BorderPane) loader.load();*/
+            Parent rootLayout = FXMLLoader.load(getClass().getResource("/fxml/rootLayout.fxml"));
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
@@ -76,6 +70,7 @@ public class Main extends Application {
         }
     }
 
+    //TODO NO BORRAR ESTOS METODOS, POR SI TENEMOS PROBLEMAS MAS ADELANTE
     public void showHomeScreen(){
         try {
 
