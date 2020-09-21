@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamOverviewController">
+    <children>
+        <TableView fx:id="teamTableView" layoutX="50.0" layoutY="55.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="56.0">
+            <columns>
+                <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="NOMBRE" />
+                <TableColumn fx:id="shortNameColumn" prefWidth="75.0" text="NOM" />
+                <TableColumn fx:id="managerNameColumn" prefWidth="75.0" text="MANAGER" />
+                <TableColumn fx:id="idLeagueColumn" prefWidth="75.0" text="LIGA" />
+            </columns>
+        </TableView>
+        <Label layoutX="230.0" layoutY="20.0" text="aca se deberia ver todo lo de equipo" />
+    </children>
+</AnchorPane>
