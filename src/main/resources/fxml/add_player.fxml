@@ -22,7 +22,7 @@
         </AnchorPane>
     </top>
    <center>
-        <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #ecece7;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #b6c6de;" BorderPane.alignment="CENTER">
             <children>
                 <Label layoutX="100.0" layoutY="29.0" prefHeight="26.0" text="Nombre">
                     <font>
