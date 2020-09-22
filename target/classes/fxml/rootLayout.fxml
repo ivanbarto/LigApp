@@ -70,7 +70,7 @@
                     </InnerShadow>
                 </effect>
             </Button>
-            <Button fx:id="btnSettings" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="configuracion" textFill="WHITE">
+            <Button fx:id="btnSettings" alignment="TOP_RIGHT" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="configuracion" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
@@ -85,7 +85,7 @@
                     </InnerShadow>
                 </effect>
             </Button>
-            <Button fx:id="btnTrackFace" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="reconocimiento" textFill="WHITE">
+            <Button fx:id="btnTrackFace" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="0.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="reconocimiento" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
@@ -100,7 +100,7 @@
                     </InnerShadow>
                 </effect>
             </Button>
-            <Button fx:id="btnClose" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCloseOnClick" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="cerrar" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+            <Button fx:id="btnClose" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCloseOnClick" prefHeight="42.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="cerrar" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>

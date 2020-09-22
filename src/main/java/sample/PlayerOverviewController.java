@@ -23,6 +23,11 @@ public class PlayerOverviewController implements Initializable {
     @FXML
     private Button btnAdd;
 
+    @FXML
+    private Button btnDelete;
+
+    private int selectedPlayerId;
+
     private Label label;
     @FXML
     private TableView<Player> playerTableView;
@@ -42,10 +47,19 @@ public class PlayerOverviewController implements Initializable {
     PlayerQueries playerQueries;
     ObservableList<Player> players;
 
+    ObservableList<Player> playersInTeam = playerQueries.getPlayers();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         playerQueries = new PlayerQueries();
         populateTableView();
+    }
+
+    @FXML
+    private void deletePlayer() {
+        playerQueries.removePlayer(this.selectedPlayerId, false);
+        //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
+        btnDelete.setDisable(true);
     }
 
     private void populateTableView() {
@@ -56,6 +70,13 @@ public class PlayerOverviewController implements Initializable {
         idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));
 
         playerTableView.setItems(playerQueries.getPlayers());
+
+        playerTableView.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getClickCount() == 1) {
+                selectedPlayerId = idPlayerColumn.getCellData(playerTableView.getSelectionModel().getSelectedIndex());
+                btnDelete.setDisable(false);
+            }
+        });
     }
 
 
