@@ -2,45 +2,118 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainScreenController">
    <left>
-      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #5680b8;">
-            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#btnHomeOnClick" text="inicio">
+      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="993.0" prefWidth="150.0" style="-fx-background-color: #5680b8;">
+            <Button fx:id="btnHome" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeOnClick" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="inicio" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnLeagues" mnemonicParsing="false" text="ligas">
+            <Button fx:id="btnLeagues" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="ligas" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnTeams" mnemonicParsing="false" onAction="#btnTeamsOnClick" text="equipos">
+            <Button fx:id="btnTeams" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnTeamsOnClick" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="equipos" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnPlayers" mnemonicParsing="false" onAction="#btnPlayersOnClick" text="jugadores">
+            <Button fx:id="btnPlayers" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPlayersOnClick" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="jugadores" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnSettings" mnemonicParsing="false" text="configuracion">
+            <Button fx:id="btnSettings" alignment="TOP_RIGHT" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="configuracion" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnTrackFace" mnemonicParsing="false" text="reconocimiento">
+            <Button fx:id="btnTrackFace" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="42.0" prefWidth="0.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="reconocimiento" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="17.0" />
+                </font>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                        </color>
+                    </InnerShadow>
+                </effect>
             </Button>
-            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#btnCloseOnClick" text="cerrar">
+            <Button fx:id="btnClose" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCloseOnClick" prefHeight="42.0" style="-fx-background-color: #2196f3; -fx-border-radius: 10px;" text="cerrar" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <FlowPane.margin>
                   <Insets bottom="15" top="15" />
                </FlowPane.margin>
+            <font>
+               <Font name="System Bold" size="17.0" />
+            </font>
+            <effect>
+               <InnerShadow>
+                  <color>
+                     <Color red="0.07334308326244354" green="0.08397498726844788" blue="0.09210526198148727" />
+                  </color>
+               </InnerShadow>
+            </effect>
             </Button>
       </FlowPane>
    </left>
