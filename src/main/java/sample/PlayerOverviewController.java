@@ -47,7 +47,7 @@ public class PlayerOverviewController implements Initializable {
     PlayerQueries playerQueries;
     ObservableList<Player> players;
 
-    ObservableList<Player> playersInTeam = playerQueries.getPlayers();
+    //ObservableList<Player> playersInTeam = playerQueries.getPlayers();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

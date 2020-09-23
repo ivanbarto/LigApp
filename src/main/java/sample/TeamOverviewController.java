@@ -20,11 +20,11 @@ public class TeamOverviewController  implements Initializable {
     @FXML
     private TableColumn<Team, String> nameColumn;
     @FXML
-    private TableColumn<Team,String> shortNameColumn;
+    private TableColumn<Team, String> shortNameColumn;
     @FXML
-    private TableColumn<Team,String> managerNameColumn;
+    private TableColumn<Team, String> managerNameColumn;
     @FXML
-    private TableColumn<Team,Integer> idLeagueColumn;
+    private TableColumn<Team, Integer> idLeagueColumn;
 
     TeamQueries teamQueries;
     ObservableList<Team> teams;
@@ -34,6 +34,15 @@ public class TeamOverviewController  implements Initializable {
         teamQueries = new TeamQueries();
         populateTableView();
     }
+
+    @FXML
+    private void deleteTeam() {
+        //teamQueries.removeTeam(this.selectedPlayerId, false);
+        //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
+        //btnDelete.setDisable(true);
+    }
+
+
 
     private void populateTableView(){
         idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamOverviewController">
-    <children>
-        <TableView fx:id="teamTableView" layoutX="50.0" layoutY="55.0" prefHeight="250.0" prefWidth="496.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="56.0">
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5cdb93;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TeamOverviewController">
+   <center>
+        <TableView fx:id="teamTableView" prefHeight="483.0" prefWidth="550.0" style="-fx-effect: asd;">
             <columns>
                 <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="NOMBRE" />
@@ -13,14 +15,31 @@
                 <TableColumn fx:id="managerNameColumn" prefWidth="75.0" text="MANAGER" />
                 <TableColumn fx:id="idLeagueColumn" prefWidth="75.0" text="LIGA" />
             </columns>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
         </TableView>
-        <Label layoutX="230.0" layoutY="20.0" text="aca se deberia ver todo lo de equipo" />
-        <HBox layoutX="175.0" layoutY="331.0" prefHeight="40.0" prefWidth="235.0" spacing="20.0">
-            <children>
-                <Button fx:id="btnAdd" mnemonicParsing="false" text="Agregar " />
-                <Button fx:id="btnDelete" mnemonicParsing="false" text="Eliminar" />
-                <Button fx:id="btnUpdate" mnemonicParsing="false" text="Editar" />
-            </children>
-        </HBox>
-    </children>
-</AnchorPane>
+   </center>
+   <right>
+      <FlowPane alignment="TOP_CENTER" layoutX="175.0" layoutY="331.0" orientation="VERTICAL" prefHeight="40.0" style="-fx-effect: dropshadow;">
+         <children>
+                <Button fx:id="btnAdd" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" text="Agregar " />
+                <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="28.0" prefWidth="94.0" text="Eliminar">
+               <FlowPane.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </FlowPane.margin>
+            </Button>
+                <Button fx:id="btnUpdate" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Editar" />
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="5.0" top="30.0" />
+         </padding>
+      </FlowPane>
+   </right>
+   <effect>
+      <InnerShadow />
+   </effect>
+</BorderPane>

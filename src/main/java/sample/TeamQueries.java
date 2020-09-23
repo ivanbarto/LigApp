@@ -15,6 +15,7 @@ public class TeamQueries {
 
     private final String ADD_TEAM_QUERY = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
     private final String GET_ALL_TEAMS_QUERY = "SELECT * FROM team";
+    private final String REMOVE_TEAM_QUERY = "DELETE FROM team WHERE idTeam = ?";
 
     DatabaseConnection dbConnection;
 
@@ -75,6 +76,25 @@ public class TeamQueries {
         } catch (SQLException ex) {
             showSQLErrorAlert(ex, "Fallo insertar equipo en BBDD");
 
+        }
+    }
+
+    public void removeTeam(int teamId, boolean teamIsModified){
+        try {
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_TEAM_QUERY);
+
+            ps.setInt(1, teamId);
+
+            ps.execute();
+            ps.close();
+            dbConnection.disconnect();
+
+            if (!teamIsModified) {
+                showSuccessAlert("eliminar equipo", "¡EQUIPO ELIMINADO!");
+            }
+
+        } catch (SQLException e) {
+            showSQLErrorAlert(e, "Fallo eliminar equipo en BBDD");
         }
     }
 
