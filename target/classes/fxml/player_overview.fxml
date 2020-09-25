@@ -30,17 +30,17 @@
     </center>
     <right>
         <FlowPane alignment="TOP_CENTER" layoutX="175.0" layoutY="331.0" orientation="VERTICAL" prefHeight="40.0" style="-fx-effect: dropshadow;">
-            <Button fx:id="btnAdd" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="94.0" text="Agregar ">
+            <Button fx:id="btnAdd" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAddPlayerOnclick" prefHeight="29.0" prefWidth="94.0" text="Agregar ">
                 <FlowPane.margin>
                     <Insets />
                 </FlowPane.margin>
             </Button>
-            <Button fx:id="btnDelete" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deletePlayer" prefHeight="28.0" prefWidth="94.0" text="Eliminar">
+            <Button fx:id="btnDelete" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDeletePlayerOnClick" prefHeight="28.0" prefWidth="94.0" text="Eliminar">
                 <FlowPane.margin>
                     <Insets bottom="15" top="15" />
                 </FlowPane.margin>
             </Button>
-            <Button fx:id="btnUpdate" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" text="Editar" />
+            <Button fx:id="btnUpdate" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdatePlayerOnclick" prefHeight="30.0" prefWidth="94.0" text="Editar" />
             <padding>
                 <Insets bottom="30.0" left="30.0" right="5.0" top="30.0" />
             </padding>

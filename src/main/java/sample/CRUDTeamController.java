@@ -26,12 +26,13 @@ public class CRUDTeamController {
     @FXML
     private TextField txtManagerPhone;
 
-    Team team;
-    TeamQueries teamQueries;
+    private Team team;
+    private TeamQueries teamQueries;
 
-    public CRUDTeamController(){ this.teamQueries = new TeamQueries(); }
+    public CRUDTeamController(){
+        this.teamQueries = new TeamQueries(); }
 
-    public void btnCreateOnAction(){
+    public void btnCreateOnClick(){
         if (validFields()) {
             //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
             team = new Team();

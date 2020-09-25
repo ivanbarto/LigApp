@@ -56,10 +56,21 @@ public class PlayerOverviewController implements Initializable {
     }
 
     @FXML
-    private void deletePlayer() {
-        playerQueries.removePlayer(this.selectedPlayerId, false);
+    private void btnAddPlayerOnclick(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    private void btnDeletePlayerOnClick(ActionEvent event) {
+        playerQueries.removePlayer(this.selectedPlayerId);
         //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
         btnDelete.setDisable(true);
+    }
+
+    @FXML
+    private void btnUpdatePlayerOnclick(ActionEvent event) {
+
     }
 
     private void populateTableView() {

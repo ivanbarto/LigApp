@@ -71,8 +71,6 @@ public class CRUDPlayerController {
             player.setDNI(txtDNI.getText());
             //TODO ver como carajo solucionar que se carggue bien la fecha
             player.setBirthDate(dpBirthDate.getValue());
-            //Al atributo Age seguramente borrarlo y calcularlo con un funcion que hay mas abajo
-            //player.setAge(txtAge.getText());
             player.setHasMedicalClearance(true);
             player.setComments(areaComments.getText());
             player.setIsSuspended(false);
