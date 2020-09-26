@@ -12,9 +12,9 @@ import java.io.IOException;
 
 public class CRUDTeamController {
     @FXML
-    private Button btnCreate;
+    private Button btnSave;
     @FXML
-    private Button btnBack;
+    private Button btnCancel;
     @FXML
     private TextField txtName;
     @FXML
@@ -28,10 +28,29 @@ public class CRUDTeamController {
 
     private Team team;
     private TeamQueries teamQueries;
+    private Stage dialogStage;
+    private boolean saveClicked = false;
 
     public CRUDTeamController(){
-        this.teamQueries = new TeamQueries(); }
+        this.teamQueries = new TeamQueries();
+    }
 
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+
+        txtName.setText(team.getName());
+        txtShortName.setText(team.getShortName());
+        txtManagerName.setText(team.getManagerName());
+        txtManagerEmail.setText(team.getManagerEmail());
+        txtManagerPhone.setText(team.getManagerPhone());
+        //TODO ACA SIGUE FALTANDO IMPLEMENTAR LO DE LIGAS
+    }
+
+    @FXML
     public void btnCreateOnClick(){
         if (validFields()) {
             //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
@@ -47,12 +66,17 @@ public class CRUDTeamController {
             team.setIdLeague(1);
 
             teamQueries.addTeam(team);
+
+            saveClicked = true;
+            dialogStage.close();
         }
     }
 
-    public void btnBackOnAction() throws IOException {
-        backToMainMenu(btnBack);
+    @FXML
+    public void btnCancelOnAction(){
+        dialogStage.close();
     }
+
 
     public void backToMainMenu(Button button) throws IOException {
         Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/fxml/tabs.fxml"));
@@ -67,5 +91,9 @@ public class CRUDTeamController {
     private boolean validFields() {
         //TODO Hacer lo necesario para validar que la entrada de datos sea correcta
         return true;
+    }
+
+    public boolean isSaveClicked() {
+        return saveClicked;
     }
 }

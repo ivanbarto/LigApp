@@ -79,7 +79,7 @@ public class TeamQueries {
         }
     }
 
-    public void removeTeam(int teamId, boolean teamIsModified){
+    public void removeTeam(int teamId){
         try {
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_TEAM_QUERY);
 
@@ -89,9 +89,8 @@ public class TeamQueries {
             ps.close();
             dbConnection.disconnect();
 
-            if (!teamIsModified) {
-                showSuccessAlert("eliminar equipo", "¡EQUIPO ELIMINADO!");
-            }
+            showSuccessAlert("eliminar equipo", "¡EQUIPO ELIMINADO!");
+
 
         } catch (SQLException e) {
             showSQLErrorAlert(e, "Fallo eliminar equipo en BBDD");
