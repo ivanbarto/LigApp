@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.utils.FxDialogs;
+import sample.utils.Utils;
 
 
 import java.io.IOException;
@@ -70,40 +72,12 @@ public class TeamOverviewController  implements Initializable {
         Team tempTeam = new Team();
         boolean saveClicked = showTeamEditDialog(tempTeam);
         if (saveClicked) {
+            //TODO este 0 sacarlo, ver como hacer para que ese boton diferencie en add y update
             crudTeamController.btnCreateOnClick();
         }
     }
 
-    public boolean showTeamEditDialog(Team team) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/fxml/add_team.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
 
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Agregar o editar equipo");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            Stage currentStage = (Stage)(teamTableView.getScene().getWindow());
-            dialogStage.initOwner(currentStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            CRUDTeamController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.setTeam(team);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-            return controller.isSaveClicked();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     /*@FXML
     private void btnAddTeamOnClick(ActionEvent event) {
@@ -131,6 +105,16 @@ public class TeamOverviewController  implements Initializable {
 
     @FXML
     private void btnUpdateTeamOnClick() {
+        Team selectedTeam = teamTableView.getSelectionModel().getSelectedItem();
+        if (selectedTeam != null) {
+            boolean saveClicked = showTeamEditDialog(selectedTeam);
+            if (saveClicked) {
+                crudTeamController.btnUpdateOnClick();
+            }
+
+        } else {
+            FxDialogs.showError("No person Selected", "Please select person in the table");
+        }
     }
 /*
     @FXML
@@ -173,6 +157,37 @@ public class TeamOverviewController  implements Initializable {
                 btnUpdate.setDisable(false);
             }
         });
+    }
+
+    public boolean showTeamEditDialog(Team team) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/add_team.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Agregar o editar equipo");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Stage currentStage = (Stage)(teamTableView.getScene().getWindow());
+            dialogStage.initOwner(currentStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            CRUDTeamController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setTeam(team);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isSaveClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     //TODO metodo que me diga si está o no seleccionado un equipo en la tabla

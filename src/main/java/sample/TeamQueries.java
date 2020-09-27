@@ -16,6 +16,7 @@ public class TeamQueries {
     private final String ADD_TEAM_QUERY = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
     private final String GET_ALL_TEAMS_QUERY = "SELECT * FROM team";
     private final String REMOVE_TEAM_QUERY = "DELETE FROM team WHERE idTeam = ?";
+    private final String UPDATE_TEAM_QUERY = "UPDATE team SET name=?,shortName=?,shieldImage=?,managerName=?,managerEmail=?,managerPhone=?,idLeague=? WHERE idTeam=?";
 
     DatabaseConnection dbConnection;
 
@@ -66,16 +67,14 @@ public class TeamQueries {
             ps.setString(6,team.getManagerPhone());
             ps.setInt(7,team.getIdLeague());
 
-            ps.execute();
+            ps.executeUpdate();
             ps.close();
             dbConnection.disconnect();
 
             showSuccessAlert("Alta de Equipo", "¡EQUIPO AGREGADO CON ÉXITO!");
 
-
         } catch (SQLException ex) {
-            showSQLErrorAlert(ex, "Fallo insertar equipo en BBDD");
-
+            showSQLErrorAlert(ex, "Fallo agregar equipo en BBDD");
         }
     }
 
@@ -94,6 +93,32 @@ public class TeamQueries {
 
         } catch (SQLException e) {
             showSQLErrorAlert(e, "Fallo eliminar equipo en BBDD");
+        }
+    }
+
+    public void updateTeam(Team team){
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(UPDATE_TEAM_QUERY);
+            ps.setString(1,team.getName());
+            ps.setString(2,team.getShortName());
+            ps.setBlob(3,team.getShieldImage());
+            ps.setString(4,team.getManagerName());
+            ps.setString(5,team.getManagerEmail());
+            ps.setString(6,team.getManagerPhone());
+            ps.setInt(7,team.getIdLeague());
+            ps.setInt(8,team.getIdTeam());
+
+            ps.execute();
+            ps.close();
+            dbConnection.disconnect();
+
+            showSuccessAlert("Modificación de Equipo", "¡EQUIPO MODIFICADO CON ÉXITO!");
+
+
+        } catch (SQLException ex) {
+            showSQLErrorAlert(ex, "Fallo modificar equipo en BBDD");
+
         }
     }
 

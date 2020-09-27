@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,6 +26,8 @@ public class CRUDTeamController {
     private TextField txtManagerEmail;
     @FXML
     private TextField txtManagerPhone;
+    @FXML
+    private Label lblIdTeam;
 
     private Team team;
     private TeamQueries teamQueries;
@@ -42,12 +45,22 @@ public class CRUDTeamController {
     public void setTeam(Team team) {
         this.team = team;
 
+        lblIdTeam.setText(String.valueOf(team.getIdTeam()));
         txtName.setText(team.getName());
         txtShortName.setText(team.getShortName());
         txtManagerName.setText(team.getManagerName());
         txtManagerEmail.setText(team.getManagerEmail());
         txtManagerPhone.setText(team.getManagerPhone());
         //TODO ACA SIGUE FALTANDO IMPLEMENTAR LO DE LIGAS
+    }
+
+    //TODO ver como implementar eso
+    public void btnSaveOnClick(boolean teamIsModified){
+        if(teamIsModified){
+            btnUpdateOnClick();
+        } else{
+            btnCreateOnClick();
+        }
     }
 
     @FXML
@@ -73,19 +86,30 @@ public class CRUDTeamController {
     }
 
     @FXML
-    public void btnCancelOnAction(){
-        dialogStage.close();
+    public void btnUpdateOnClick(){
+        if (validFields()) {
+            //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
+            team.setIdTeam(Integer.parseInt(lblIdTeam.getText()));
+            team.setName(txtName.getText());
+            team.setShortName(txtShortName.getText());
+            //TODO ver como capturar datos de una imagen para guardarla como blob
+            team.setShieldImage(null);
+            team.setManagerName(txtManagerName.getText());
+            team.setManagerEmail(txtManagerEmail.getText());
+            team.setManagerPhone(txtManagerPhone.getText());
+            //TODO ese ID cambiarlo una vez que hayamos creado la clase League y todo eso
+            team.setIdLeague(1);
+
+            teamQueries.updateTeam(team);
+
+            saveClicked = true;
+            dialogStage.close();
+        }
     }
 
-
-    public void backToMainMenu(Button button) throws IOException {
-        Parent mainMenuParent = FXMLLoader.load(getClass().getResource("/fxml/tabs.fxml"));
-        Scene mainMenuScene = new Scene(mainMenuParent);
-
-        Stage window = (Stage) button.getScene().getWindow();
-
-        window.setScene(mainMenuScene);
-        window.show();
+    @FXML
+    public void btnCancelOnAction(){
+        dialogStage.close();
     }
 
     private boolean validFields() {
