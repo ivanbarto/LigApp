@@ -50,6 +50,7 @@ public class TeamOverviewController  implements Initializable {
     private Label lblStatus;
 
     private TeamQueries teamQueries;
+    private PlayerQueries playerQueries;
     ObservableList<Team> teams;
     private CRUDTeamController crudTeamController;
     private int selectedTeamId;
@@ -57,22 +58,18 @@ public class TeamOverviewController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         teamQueries = new TeamQueries();
+        playerQueries = new PlayerQueries();
         crudTeamController = new CRUDTeamController();
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
         populateTableView();
     }
 
-    /**
-     * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
-     */
     @FXML
     private void btnAddTeamOnClick() {
         Team tempTeam = new Team();
         boolean saveClicked = showTeamEditDialog(tempTeam);
         if (saveClicked) {
-            //TODO este 0 sacarlo, ver como hacer para que ese boton diferencie en add y update
             crudTeamController.btnCreateOnClick();
         }
     }
@@ -96,10 +93,13 @@ public class TeamOverviewController  implements Initializable {
     @FXML
     private void btnDeleteTeamOnClick() {
         lblStatus.setText("Eliminando...");
+        playerQueries.removeTeamPlayers(this.selectedTeamId);
         teamQueries.removeTeam(this.selectedTeamId);
         //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
         lblStatus.setText("");
         btnDelete.setDisable(true);
+        btnUpdate.setDisable(true);
+        populateTableView();
     }
 
 
@@ -115,6 +115,7 @@ public class TeamOverviewController  implements Initializable {
         } else {
             FxDialogs.showError("No person Selected", "Please select person in the table");
         }
+        populateTableView();
     }
 /*
     @FXML

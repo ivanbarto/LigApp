@@ -15,6 +15,7 @@ public class PlayerQueries {
 
     private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam,photo) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
+    private final String REMOVE_TEAM_PLAYERS_QUERY = "DELETE FROM player WHERE idTeam = ?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
 
     DatabaseConnection dbConnection;
@@ -72,6 +73,25 @@ public class PlayerQueries {
         }
     }
 
+    public void removeTeamPlayers(int teamId) {
+        try {
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_TEAM_PLAYERS_QUERY);
+
+            ps.setInt(1, teamId);
+
+            ps.execute();
+            ps.close();
+            dbConnection.disconnect();
+
+           /* if (!playerIsModified) {
+                showSuccessAlert("eliminar jugador", "¡JUGADOR ELIMINADO!");
+            }*/
+            showSuccessAlert("eliminar jugadores", "SE ELIMINARON TODOS LOS JUGADORES ASOCIADOS AL EQUIPO");
+
+        } catch (SQLException e) {
+            showSQLErrorAlert(e, "Fallo eliminar jugadores en BBDD");
+        }
+    }
 
 
 
