@@ -50,7 +50,7 @@ public class PlayerQueries {
         }
     }
 
-    public void removePlayer(int playerId/*, boolean playerIsModified*/) {
+    public void removePlayer(int playerId) {
         try {
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_PLAYER_QUERY);
 
@@ -104,7 +104,7 @@ public class PlayerQueries {
             ps.setString(8, player.getNumberOfSuspensionDays());
             ps.setInt(9, player.getIdTeam());
             ps.setString(10, player.getPhoto());
-            ps.setInt(11, player.getIdTeam());
+            ps.setInt(11, player.getIdPlayer());
 
             ps.executeUpdate();
             ps.close();
@@ -134,9 +134,9 @@ public class PlayerQueries {
                 playerToAdd.setLastName(playersTable.getString("lastName"));
                 playerToAdd.setDNI(playersTable.getString("DNI"));
                 playerToAdd.setBirthDate(null);
-                playerToAdd.setHasMedicalClearance(false);
+                playerToAdd.setHasMedicalClearance(playersTable.getBoolean("hasMedicalClearance"));
                 playerToAdd.setComments(playersTable.getString("comments"));
-                playerToAdd.setIsSuspended(false);
+                playerToAdd.setIsSuspended(playersTable.getBoolean("isSuspended"));
                 playerToAdd.setNumberOfSuspensionDays(playersTable.getString("numberOfSuspensionDays"));
                 playerToAdd.setIdTeam(playersTable.getInt("idTeam"));
 
@@ -167,10 +167,10 @@ public class PlayerQueries {
                 player.setFirstName(rs.getString("firstName"));
                 player.setLastName(rs.getString("lastName"));
                 player.setDNI(rs.getString("DNI"));
-                player.setBirthDate(null);
-                player.setHasMedicalClearance(false);
+                player.setBirthDate(rs.getDate("birthDate").toLocalDate());
+                player.setHasMedicalClearance(rs.getBoolean("hasMedicalClearance"));
                 player.setComments(rs.getString("comments"));
-                player.setIsSuspended(false);
+                player.setIsSuspended(rs.getBoolean("isSuspended"));
                 player.setNumberOfSuspensionDays(rs.getString("numberOfSuspensionDays"));
                 player.setIdTeam(rs.getInt("idTeam"));
 

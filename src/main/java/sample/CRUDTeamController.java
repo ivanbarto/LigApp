@@ -33,6 +33,7 @@ public class CRUDTeamController {
     private TeamQueries teamQueries;
     private Stage dialogStage;
     private boolean saveClicked = false;
+    private Boolean teamIsModified;
 
     public CRUDTeamController(){
         this.teamQueries = new TeamQueries();
@@ -54,6 +55,10 @@ public class CRUDTeamController {
         //TODO ACA SIGUE FALTANDO IMPLEMENTAR LO DE LIGAS
     }
 
+    public void setIsModified(boolean teamIsModified){
+        this.teamIsModified = teamIsModified;
+    }
+
    /* public void setTeam(Team team) {
         this.team = team;
 
@@ -66,11 +71,11 @@ public class CRUDTeamController {
     }*/
 
     //TODO ver como implementar eso
-    public void btnSaveOnClick(boolean teamIsModified){
-        if(teamIsModified){
-            btnUpdateOnClick();
+    public void btnSaveOnClick(){
+        if(this.teamIsModified){
+            btnSave.setOnAction(event -> btnUpdateOnClick());
         } else{
-            btnCreateOnClick();
+            btnSave.setOnAction(event -> btnCreateOnClick());
         }
     }
 
@@ -99,17 +104,17 @@ public class CRUDTeamController {
     @FXML
     public void btnUpdateOnClick(){
         if (validFields()) {
-            //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
-            team.setIdTeam(Integer.parseInt(lblIdTeam.getText()));
+
+            //team.setIdTeam(team.getIdTeam());
             team.setName(txtName.getText());
             team.setShortName(txtShortName.getText());
-            //TODO ver como capturar datos de una imagen para guardarla como blob
-            team.setShieldImage(null);
+            //linea innecesaria, la puse para no olvidarme que eso es algo que falta modificar
+            team.setShieldImage(team.getShieldImage());
             team.setManagerName(txtManagerName.getText());
             team.setManagerEmail(txtManagerEmail.getText());
             team.setManagerPhone(txtManagerPhone.getText());
-            //TODO ese ID cambiarlo una vez que hayamos creado la clase League y todo eso
-            team.setIdLeague(1);
+            //linea innecesaria, la puse para no olvidarme que eso es algo que falta modificar
+            team.setIdLeague(team.getIdLeague());
 
             teamQueries.updateTeam(team);
 

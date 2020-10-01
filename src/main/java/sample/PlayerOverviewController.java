@@ -68,10 +68,11 @@ public class PlayerOverviewController implements Initializable {
     private void btnAddPlayerOnclick(ActionEvent event) {
         /*Player tempPlayer = new Player();*/
         //Se pone 0 para que cargue un Player nulo desde el constructor, asi el resto de los campos de add_player quedan vacíos
-        boolean saveClicked = showPlayerEditDialog(0);
+        boolean saveClicked = showPlayerEditDialog(0, false);
         if (saveClicked) {
             crudPlayerController.btnCreateOnClick();
         }
+        populateTableView();
     }
 
     /*
@@ -93,19 +94,21 @@ public class PlayerOverviewController implements Initializable {
         lblStatus.setText("");
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
+        populateTableView();
     }
 
     @FXML
     private void btnUpdatePlayerOnclick(ActionEvent event) {
         Player selectedPlayer = playerTableView.getSelectionModel().getSelectedItem();
         if(selectedPlayer != null){
-            boolean saveClicked = showPlayerEditDialog(this.selectedPlayerId);
+            boolean saveClicked = showPlayerEditDialog(this.selectedPlayerId, true);
             if(saveClicked){
                 crudPlayerController.btnUpdateOnClick();
             }
         } else{
             FxDialogs.showError("No selecciono jugador", "Debe seleccionar un jugador en la tabla");
         }
+        populateTableView();
     }
 
     private void populateTableView() {
@@ -135,7 +138,7 @@ public class PlayerOverviewController implements Initializable {
         });
     }
 
-    public boolean showPlayerEditDialog(int idPlayer) {
+    public boolean showPlayerEditDialog(int idPlayer, boolean playerIsModified) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -156,6 +159,7 @@ public class PlayerOverviewController implements Initializable {
             controller.setDialogStage(dialogStage);
             /*controller.setPlayer(player);*/
             controller.setIdPlayer(idPlayer);
+            controller.setIsModified(playerIsModified);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

@@ -1,7 +1,10 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,12 +13,15 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.sql.Blob;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Base64;
+import java.util.ResourceBundle;
 
-public class CRUDPlayerController {
+public class CRUDPlayerController implements Initializable {
     @FXML
     private Button btnSave;
     @FXML
@@ -36,6 +42,9 @@ public class CRUDPlayerController {
     private Label lblSelectedPhoto;
     @FXML
     private Label lblIdPlayer;
+    @FXML
+    private ComboBox<Team> cboTeam;
+    private ObservableList<Team> teamsToChoose;
 
     final FileChooser fileChooser = new FileChooser();
 
@@ -43,27 +52,22 @@ public class CRUDPlayerController {
 
     private Player player;
     private PlayerQueries playerQueries;
+    private TeamQueries teamQueries;
+    private Boolean playerIsModified;
     private Stage dialogStage;
     private boolean saveClicked = false;
 
     public CRUDPlayerController() {
         this.playerQueries = new PlayerQueries();
+        this.teamQueries = new TeamQueries();
     }
 
-    public void btnAddPhotoOnAction(){
-        File file = fileChooser.showOpenDialog(Main.stage);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        teamsToChoose = FXCollections.observableArrayList();
 
-        lblSelectedPhoto.setText(file.getName());
-
-        try {
-            base64Encoded = Base64.getEncoder().encodeToString(Files.readAllBytes(file.toPath()));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            lblSelectedPhoto.setText("Error cargando foto");
-
-        }
-
+        cboTeam.setItems(teamsToChoose);
+        teamsToChoose.addAll(teamQueries.getTeams());
     }
 
     public void setDialogStage(Stage dialogStage){
@@ -86,15 +90,21 @@ public class CRUDPlayerController {
         txtFirstName.setText(player.getFirstName());
         txtLastName.setText(player.getLastName());
         txtDNI.setText(player.getDNI());
+        dpBirthDate.setValue(player.getBirthDate());
         areaComments.setText(player.getComments());
+        cboTeam.setValue(teamQueries.getTeam(player.getIdTeam()));
+    }
+
+    public void setIsModified(boolean playerIsModified){
+        this.playerIsModified = playerIsModified;
     }
 
     //TODO ver como implementar eso
-    public void btnSaveOnClick(boolean teamIsModified){
-        if(teamIsModified){
-            btnUpdateOnClick();
+    public void btnSaveOnClick(){
+        if(this.playerIsModified){
+            btnSave.setOnAction(event -> btnUpdateOnClick());
         } else{
-            btnCreateOnClick();
+            btnSave.setOnAction(event -> btnCreateOnClick());
         }
     }
 
@@ -111,8 +121,7 @@ public class CRUDPlayerController {
             player.setComments(areaComments.getText());
             player.setIsSuspended(false);
             player.setNumberOfSuspensionDays(null);
-            //TODO ese ID cambiarlo una vez que hayamos creado la clase Team y todo eso
-            player.setIdTeam(1);
+            player.setIdTeam(cboTeam.getValue().getIdTeam());
             player.setPhoto(base64Encoded);
 
             playerQueries.addPlayer(player);
@@ -125,25 +134,22 @@ public class CRUDPlayerController {
 
     public void btnUpdateOnClick() {
         if (validFields()) {
-            /*//TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
-            player.setIdPlayer(Integer.parseInt(lblIdPlayer.getText()));
+            //Por ahora modificar, solo modifica lo visible. No se toca ningun otro campo
             player.setFirstName(txtFirstName.getText());
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
-            //TODO ver como carajo solucionar que se carggue bien la fecha
             player.setBirthDate(dpBirthDate.getValue());
-            player.setHasMedicalClearance(true);
+            //player.setHasMedicalClearance(true);
             player.setComments(areaComments.getText());
-            player.setIsSuspended(false);
-            player.setNumberOfSuspensionDays(null);
-            //TODO ese ID cambiarlo una vez que hayamos creado la clase Team y todo eso
-            player.setIdTeam(1);
-            player.setPhoto(base64Encoded);
+            //player.setIsSuspended(false);
+            //player.setNumberOfSuspensionDays(null);
+            player.setIdTeam(cboTeam.getValue().getIdTeam());
+            //player.setPhoto(base64Encoded);
 
-            playerQueries.addPlayer(player);
+            playerQueries.updatePlayer(player);
 
             saveClicked = true;
-            dialogStage.close();*/
+            dialogStage.close();
         }
 
     }
@@ -165,6 +171,22 @@ public class CRUDPlayerController {
         LocalDate localDate = dpBirthDate.getValue();
         //TODO ver otro metodo de almacenar la fecha, o guardarla como string o long ya que asi está deprecated
         return new Date(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
+    }
+
+    public void btnAddPhotoOnAction(){
+        File file = fileChooser.showOpenDialog(Main.stage);
+
+        lblSelectedPhoto.setText(file.getName());
+
+        try {
+            base64Encoded = Base64.getEncoder().encodeToString(Files.readAllBytes(file.toPath()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            lblSelectedPhoto.setText("Error cargando foto");
+
+        }
+
     }
 
     //TODO esto es para poder sacar la edad del tipo para permitirle o no estar en la liga, verlo

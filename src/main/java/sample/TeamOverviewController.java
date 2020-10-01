@@ -68,10 +68,11 @@ public class TeamOverviewController  implements Initializable {
     private void btnAddTeamOnClick() {
         /*Team tempTeam = new Team();*/
         //Se pone 0 para que cargue un Team nulo desde el constructor, asi el resto de los campos de add_player quedan vacíos
-        boolean saveClicked = showTeamEditDialog(0);
+        boolean saveClicked = showTeamEditDialog(0, false);
         if (saveClicked) {
             crudTeamController.btnCreateOnClick();
         }
+        populateTableView();
     }
 
 
@@ -107,7 +108,7 @@ public class TeamOverviewController  implements Initializable {
     private void btnUpdateTeamOnClick() {
         Team selectedTeam = teamTableView.getSelectionModel().getSelectedItem();
         if (selectedTeam != null) {
-            boolean saveClicked = showTeamEditDialog(this.selectedTeamId);
+            boolean saveClicked = showTeamEditDialog(this.selectedTeamId, true);
             if (saveClicked) {
                 crudTeamController.btnUpdateOnClick();
             }
@@ -160,7 +161,7 @@ public class TeamOverviewController  implements Initializable {
         });
     }
 
-    public boolean showTeamEditDialog(int idTeam) {
+    public boolean showTeamEditDialog(int idTeam, boolean teamIsModified) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -181,6 +182,7 @@ public class TeamOverviewController  implements Initializable {
             controller.setDialogStage(dialogStage);
             /*controller.setTeam(team);*/
             controller.setIdTeam(idTeam);
+            controller.setIsModified(teamIsModified);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -191,6 +193,8 @@ public class TeamOverviewController  implements Initializable {
             return false;
         }
     }
+
+
 
     //TODO metodo que me diga si está o no seleccionado un equipo en la tabla
 }

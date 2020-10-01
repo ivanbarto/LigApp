@@ -124,4 +124,8 @@ public class Team {
     public void setIdLeague(int idLeague) {
         this.idLeague.set(idLeague);
     }
+
+    public String toString(){
+        return idTeam.get() + " - " + name.get();
+    }
 }
