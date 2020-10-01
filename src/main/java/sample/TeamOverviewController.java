@@ -51,7 +51,6 @@ public class TeamOverviewController  implements Initializable {
 
     private TeamQueries teamQueries;
     private PlayerQueries playerQueries;
-    ObservableList<Team> teams;
     private CRUDTeamController crudTeamController;
     private int selectedTeamId;
 
@@ -67,8 +66,9 @@ public class TeamOverviewController  implements Initializable {
 
     @FXML
     private void btnAddTeamOnClick() {
-        Team tempTeam = new Team();
-        boolean saveClicked = showTeamEditDialog(tempTeam);
+        /*Team tempTeam = new Team();*/
+        //Se pone 0 para que cargue un Team nulo desde el constructor, asi el resto de los campos de add_player quedan vacíos
+        boolean saveClicked = showTeamEditDialog(0);
         if (saveClicked) {
             crudTeamController.btnCreateOnClick();
         }
@@ -107,13 +107,13 @@ public class TeamOverviewController  implements Initializable {
     private void btnUpdateTeamOnClick() {
         Team selectedTeam = teamTableView.getSelectionModel().getSelectedItem();
         if (selectedTeam != null) {
-            boolean saveClicked = showTeamEditDialog(selectedTeam);
+            boolean saveClicked = showTeamEditDialog(this.selectedTeamId);
             if (saveClicked) {
                 crudTeamController.btnUpdateOnClick();
             }
 
         } else {
-            FxDialogs.showError("No person Selected", "Please select person in the table");
+            FxDialogs.showError("No selecciono equipo", "Debe seleccionar un equipo en la tabla");
         }
         populateTableView();
     }
@@ -160,7 +160,7 @@ public class TeamOverviewController  implements Initializable {
         });
     }
 
-    public boolean showTeamEditDialog(Team team) {
+    public boolean showTeamEditDialog(int idTeam) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -179,7 +179,8 @@ public class TeamOverviewController  implements Initializable {
             // Set the person into the controller.
             CRUDTeamController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setTeam(team);
+            /*controller.setTeam(team);*/
+            controller.setIdTeam(idTeam);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

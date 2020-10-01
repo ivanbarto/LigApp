@@ -11,12 +11,12 @@ import java.sql.SQLException;
 
 public class PlayerQueries {
 
-    private final int PLAYER_FEATURES = 11;
-
     private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam,photo) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
     private final String REMOVE_TEAM_PLAYERS_QUERY = "DELETE FROM player WHERE idTeam = ?";
+    private final String GET_PLAYER_QUERY = "SELECT * FROM player WHERE idPlayer=?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
+    private final String UPDATE_PLAYER_QUERY = "UPDATE player SET firstName=?,lastName=?,DNI=?,birthDate=?,hasMedicalClearance=?,comments=?,isSuspended=?,numberOfSuspensionDays=?,idTeam=?,photo=? WHERE idPlayer=?";
 
     DatabaseConnection dbConnection;
 
@@ -24,7 +24,7 @@ public class PlayerQueries {
         this.dbConnection = new DatabaseConnection();
     }
 
-    public void addPlayer(Player player, boolean playerIsModified) {
+    public void addPlayer(Player player) {
         try {
 
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(ADD_PLAYER_QUERY);
@@ -37,17 +37,14 @@ public class PlayerQueries {
             ps.setBoolean(7, player.getIsSuspended());
             ps.setString(8, player.getNumberOfSuspensionDays());
             ps.setInt(9, player.getIdTeam());
-            ps.setString(10,player.getPhoto());
+            ps.setString(10, player.getPhoto());
 
             ps.execute();
             ps.close();
             dbConnection.disconnect();
 
-            if (!playerIsModified) {
-                showSuccessAlert("Alta de Jugador", "¡JUGADOR AGREGADO CON ÉXITO!");
-            } else {
-                showSuccessAlert("Alta de Jugador", "¡JUGADOR MODIFICADO!");
-            }
+            showSuccessAlert("Alta de Jugador", "¡JUGADOR AGREGADO CON ÉXITO!");
+
         } catch (SQLException ex) {
             showSQLErrorAlert(ex, "Fallo insertar jugador en BBDD");
         }
@@ -93,7 +90,32 @@ public class PlayerQueries {
         }
     }
 
+    public void updatePlayer(Player player) {
+        try {
 
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(UPDATE_PLAYER_QUERY);
+            ps.setString(1, player.getFirstName());
+            ps.setString(2, player.getLastName());
+            ps.setString(3, player.getDNI());
+            ps.setDate(4, Date.valueOf(player.getBirthDate()));
+            ps.setBoolean(5, player.getHasMedicalClearance());
+            ps.setString(6, player.getComments());
+            ps.setBoolean(7, player.getIsSuspended());
+            ps.setString(8, player.getNumberOfSuspensionDays());
+            ps.setInt(9, player.getIdTeam());
+            ps.setString(10, player.getPhoto());
+            ps.setInt(11, player.getIdTeam());
+
+            ps.executeUpdate();
+            ps.close();
+            dbConnection.disconnect();
+
+            showSuccessAlert("Modificación de Jugador", "¡JUGADOR MODIFICADO CON ÉXITO!");
+
+        } catch (SQLException ex) {
+            showSQLErrorAlert(ex, "Fallo modificar jugador en BBDD");
+        }
+    }
 
     public ObservableList<Player> getPlayers() {
         ObservableList<Player> playersList = FXCollections.observableArrayList();
@@ -125,12 +147,44 @@ public class PlayerQueries {
             dbConnection.disconnect();
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e,"player list error");
+            showSQLErrorAlert(e, "player list error");
         }
 
         return playersList;
     }
 
+    public Player getPlayer(int idPlayer){
+        Player player  = new Player();
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_PLAYER_QUERY);
+            ps.setInt(1, idPlayer);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                player.setIdPlayer((rs.getInt("idPlayer")));
+                player.setFirstName(rs.getString("firstName"));
+                player.setLastName(rs.getString("lastName"));
+                player.setDNI(rs.getString("DNI"));
+                player.setBirthDate(null);
+                player.setHasMedicalClearance(false);
+                player.setComments(rs.getString("comments"));
+                player.setIsSuspended(false);
+                player.setNumberOfSuspensionDays(rs.getString("numberOfSuspensionDays"));
+                player.setIdTeam(rs.getInt("idTeam"));
+
+            }
+
+            ps.close();
+            dbConnection.disconnect();
+
+        } catch (SQLException e) {
+            showSQLErrorAlert(e, "get player error");
+        }
+
+        return player;
+    }
 
     public void showSQLErrorAlert(SQLException errorMessage, String title) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

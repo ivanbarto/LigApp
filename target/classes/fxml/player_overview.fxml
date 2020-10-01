@@ -14,6 +14,7 @@
                 <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="NOMBRE" />
                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="APELLIDO" />
                 <TableColumn fx:id="dniColumn" prefWidth="75.0" text="DNI" />
+            <TableColumn fx:id="commentsColumn" prefWidth="75.0" text="COMENTARIOS" />
                 <TableColumn fx:id="idTeamColumn" prefWidth="75.0" text="EQUIPO" />
             </columns>
             <effect>
@@ -41,6 +42,7 @@
                 </FlowPane.margin>
             </Button>
             <Button fx:id="btnUpdate" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnUpdatePlayerOnclick" prefHeight="30.0" prefWidth="94.0" text="Editar" />
+         <Label fx:id="lblStatus" prefHeight="104.0" prefWidth="92.0" />
             <padding>
                 <Insets bottom="30.0" left="30.0" right="5.0" top="30.0" />
             </padding>

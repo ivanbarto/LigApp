@@ -11,10 +11,9 @@ import java.util.ArrayList;
 
 public class TeamQueries {
 
-    private final int TEAM_FEATURES = 8;
-
     private final String ADD_TEAM_QUERY = "INSERT INTO team (name,shortName,shieldImage,managerName,managerEmail,managerPhone,idLeague) VALUES (?,?,?,?,?,?,?)";
     private final String GET_ALL_TEAMS_QUERY = "SELECT * FROM team";
+    private final String GET_TEAM_QUERY = "SELECT * FROM team WHERE idTeam=?";
     private final String REMOVE_TEAM_QUERY = "DELETE FROM team WHERE idTeam = ?";
     private final String UPDATE_TEAM_QUERY = "UPDATE team SET name=?,shortName=?,shieldImage=?,managerName=?,managerEmail=?,managerPhone=?,idLeague=? WHERE idTeam=?";
 
@@ -55,6 +54,36 @@ public class TeamQueries {
         return teamsList;
     }
 
+    public Team getTeam(int idTeam){
+        Team team = new Team();
+
+        try {
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_TEAM_QUERY);
+            ps.setInt(1, idTeam);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                team.setIdTeam(rs.getInt("idTeam"));
+                team.setName(rs.getString("name"));
+                team.setShortName(rs.getString("shortName"));
+                team.setShieldImage(rs.getBlob("shieldImage"));
+                team.setManagerName(rs.getString("managerName"));
+                team.setManagerEmail(rs.getString("managerEmail"));
+                team.setManagerPhone(rs.getString("managerPhone"));
+                team.setIdLeague(rs.getInt("idLeague"));
+
+            }
+
+            ps.close();
+            dbConnection.disconnect();
+
+        }catch (SQLException e){
+            showSQLErrorAlert(e,"get teams error");
+        }
+
+        return team;
+    }
+
     public void addTeam(Team team) {
         try {
 
@@ -67,7 +96,7 @@ public class TeamQueries {
             ps.setString(6,team.getManagerPhone());
             ps.setInt(7,team.getIdLeague());
 
-            ps.executeUpdate();
+            ps.execute();
             ps.close();
             dbConnection.disconnect();
 
@@ -109,7 +138,7 @@ public class TeamQueries {
             ps.setInt(7,team.getIdLeague());
             ps.setInt(8,team.getIdTeam());
 
-            ps.execute();
+            ps.executeUpdate();
             ps.close();
             dbConnection.disconnect();
 

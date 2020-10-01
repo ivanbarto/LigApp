@@ -28,7 +28,7 @@ public class Player {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.DNI = new SimpleStringProperty(DNI);
-        this.birthDate = new SimpleObjectProperty<LocalDate>(birthDate);
+        this.birthDate = new SimpleObjectProperty<>(birthDate);
         this.hasMedicalClearance = new SimpleBooleanProperty(hasMedicalClearance);
         this.comments = new SimpleStringProperty(comments);
         this.isSuspended = new SimpleBooleanProperty(isSuspended);

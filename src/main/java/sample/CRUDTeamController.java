@@ -42,8 +42,8 @@ public class CRUDTeamController {
         this.dialogStage = dialogStage;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setIdTeam(int idTeam) {
+        this.team = teamQueries.getTeam(idTeam);
 
         lblIdTeam.setText(String.valueOf(team.getIdTeam()));
         txtName.setText(team.getName());
@@ -53,6 +53,17 @@ public class CRUDTeamController {
         txtManagerPhone.setText(team.getManagerPhone());
         //TODO ACA SIGUE FALTANDO IMPLEMENTAR LO DE LIGAS
     }
+
+   /* public void setTeam(Team team) {
+        this.team = team;
+
+        lblIdTeam.setText(String.valueOf(team.getIdTeam()));
+        txtName.setText(team.getName());
+        txtShortName.setText(team.getShortName());
+        txtManagerName.setText(team.getManagerName());
+        txtManagerEmail.setText(team.getManagerEmail());
+        txtManagerPhone.setText(team.getManagerPhone());
+    }*/
 
     //TODO ver como implementar eso
     public void btnSaveOnClick(boolean teamIsModified){
