@@ -14,6 +14,7 @@ public class PlayerQueries {
     private final String ADD_PLAYER_QUERY = "INSERT INTO player (firstName,lastName,DNI,birthDate,hasMedicalClearance,comments,isSuspended,numberOfSuspensionDays,idTeam,photo) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private final String REMOVE_PLAYER_QUERY = "DELETE FROM player WHERE idPlayer = ?";
     private final String REMOVE_TEAM_PLAYERS_QUERY = "DELETE FROM player WHERE idTeam = ?";
+    private final String GET_TEAM_PLAYERS_QUERY = "SELECT * FROM player WHERE idTeam = ?";
     private final String GET_PLAYER_QUERY = "SELECT * FROM player WHERE idPlayer=?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
     private final String UPDATE_PLAYER_QUERY = "UPDATE player SET firstName=?,lastName=?,DNI=?,birthDate=?,hasMedicalClearance=?,comments=?,isSuspended=?,numberOfSuspensionDays=?,idTeam=?,photo=? WHERE idPlayer=?";
@@ -50,11 +51,11 @@ public class PlayerQueries {
         }
     }
 
-    public void removePlayer(int playerId) {
+    public void removePlayer(int idPlayer) {
         try {
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_PLAYER_QUERY);
 
-            ps.setInt(1, playerId);
+            ps.setInt(1, idPlayer);
 
             ps.execute();
             ps.close();
@@ -70,11 +71,11 @@ public class PlayerQueries {
         }
     }
 
-    public void removeTeamPlayers(int teamId) {
+    public void removeTeamPlayers(int idTeam) {
         try {
             PreparedStatement ps = dbConnection.getConnection().prepareStatement(REMOVE_TEAM_PLAYERS_QUERY);
 
-            ps.setInt(1, teamId);
+            ps.setInt(1, idTeam);
 
             ps.execute();
             ps.close();
@@ -153,6 +154,43 @@ public class PlayerQueries {
         return playersList;
     }
 
+    public ObservableList<Player> getTeamPlayers(int idTeam) {
+        ObservableList<Player> playersList = FXCollections.observableArrayList();
+
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_TEAM_PLAYERS_QUERY);
+            ps.setInt(1, idTeam);
+            ResultSet playersTable = ps.executeQuery();
+
+            while (playersTable.next()) {
+
+                Player playerToAdd = new Player();
+                playerToAdd.setIdPlayer((playersTable.getInt("idPlayer")));
+                playerToAdd.setFirstName(playersTable.getString("firstName"));
+                playerToAdd.setLastName(playersTable.getString("lastName"));
+                playerToAdd.setDNI(playersTable.getString("DNI"));
+                playerToAdd.setBirthDate(null);
+                playerToAdd.setHasMedicalClearance(playersTable.getBoolean("hasMedicalClearance"));
+                playerToAdd.setComments(playersTable.getString("comments"));
+                playerToAdd.setIsSuspended(playersTable.getBoolean("isSuspended"));
+                playerToAdd.setNumberOfSuspensionDays(playersTable.getString("numberOfSuspensionDays"));
+                playerToAdd.setIdTeam(playersTable.getInt("idTeam"));
+
+                playersList.add(playerToAdd);
+            }
+
+            ps.close();
+            dbConnection.disconnect();
+
+        } catch (SQLException e) {
+            showSQLErrorAlert(e, "team player list error");
+        }
+
+        return playersList;
+    }
+
+
     public Player getPlayer(int idPlayer){
         Player player  = new Player();
         try {
@@ -173,6 +211,7 @@ public class PlayerQueries {
                 player.setIsSuspended(rs.getBoolean("isSuspended"));
                 player.setNumberOfSuspensionDays(rs.getString("numberOfSuspensionDays"));
                 player.setIdTeam(rs.getInt("idTeam"));
+                player.setPhoto(rs.getString("photo"));
 
             }
 

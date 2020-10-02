@@ -44,6 +44,11 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Button fx:id="btnRefresh" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" onAction="#btnRefreshOnAction"  style="-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/mono-general-4/24/refresh-icon.png); -fx-background-color: #D5E3E3;" textAlignment="CENTER">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </Button>
          </children>
          <padding>
             <Insets bottom="30.0" left="30.0" right="5.0" top="30.0" />

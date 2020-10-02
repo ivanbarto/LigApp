@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -30,6 +28,8 @@ public class PlayerOverviewController implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
+    private Button btnRefresh;
+    @FXML
     private TableView<Player> playerTableView;
     @FXML
     private TableColumn<Player, Integer> idPlayerColumn;
@@ -46,10 +46,12 @@ public class PlayerOverviewController implements Initializable {
     @FXML
     private Label lblStatus;
     @FXML
-    private TableColumn colEdit;
+    private ComboBox<Team> cboTeam;
 
     private int selectedPlayerId;
 
+    private ObservableList<Team> teamsToChoose;
+    private TeamQueries teamQueries;
     private PlayerQueries playerQueries;
     private CRUDPlayerController crudPlayerController;
 
@@ -58,9 +60,16 @@ public class PlayerOverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         playerQueries = new PlayerQueries();
+        teamQueries = new TeamQueries();
         crudPlayerController = new CRUDPlayerController();
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
+
+        teamsToChoose = FXCollections.observableArrayList();
+
+        cboTeam.setItems(teamsToChoose);
+        teamsToChoose.addAll(teamQueries.getTeams());
+
         populateTableView();
     }
 
@@ -127,7 +136,11 @@ public class PlayerOverviewController implements Initializable {
         idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));
          */
 
-        playerTableView.setItems(playerQueries.getPlayers());
+        if(cboTeam.getValue()==null){
+            playerTableView.setItems(playerQueries.getPlayers());
+        }else{
+            playerTableView.setItems(playerQueries.getTeamPlayers(cboTeam.getValue().getIdTeam()));
+        }
 
         playerTableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 1) {
@@ -171,4 +184,8 @@ public class PlayerOverviewController implements Initializable {
         }
     }
 
+    @FXML
+    public void btnRefreshOnAction(){
+        populateTableView();
+    }
 }

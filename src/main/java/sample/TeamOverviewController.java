@@ -47,6 +47,8 @@ public class TeamOverviewController  implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
+    private Button btnRefresh;
+    @FXML
     private Label lblStatus;
 
     private TeamQueries teamQueries;
@@ -194,7 +196,10 @@ public class TeamOverviewController  implements Initializable {
         }
     }
 
-
+    @FXML
+    public void btnRefreshOnAction(){
+        populateTableView();
+    }
 
     //TODO metodo que me diga si está o no seleccionado un equipo en la tabla
 }

@@ -74,15 +74,6 @@ public class CRUDPlayerController implements Initializable {
         this.dialogStage = dialogStage;
     }
 
-    /*public void setPlayer(Player player){
-        this.player = player;
-
-        lblIdPlayer.setText(String.valueOf(player.getIdPlayer()));
-        txtFirstName.setText(player.getFirstName());
-        txtLastName.setText(player.getLastName());
-        txtDNI.setText(player.getDNI());
-    }*/
-
     public void setIdPlayer(int idPlayer){
         this.player = playerQueries.getPlayer(idPlayer);
 
@@ -91,6 +82,7 @@ public class CRUDPlayerController implements Initializable {
         txtLastName.setText(player.getLastName());
         txtDNI.setText(player.getDNI());
         dpBirthDate.setValue(player.getBirthDate());
+        base64Encoded = player.getPhoto();
         areaComments.setText(player.getComments());
         cboTeam.setValue(teamQueries.getTeam(player.getIdTeam()));
     }
@@ -144,7 +136,7 @@ public class CRUDPlayerController implements Initializable {
             //player.setIsSuspended(false);
             //player.setNumberOfSuspensionDays(null);
             player.setIdTeam(cboTeam.getValue().getIdTeam());
-            //player.setPhoto(base64Encoded);
+            player.setPhoto(base64Encoded);
 
             playerQueries.updatePlayer(player);
 
@@ -165,12 +157,6 @@ public class CRUDPlayerController implements Initializable {
 
     public boolean isSaveClicked() {
         return saveClicked;
-    }
-
-    private Date convertedBirthDate() {
-        LocalDate localDate = dpBirthDate.getValue();
-        //TODO ver otro metodo de almacenar la fecha, o guardarla como string o long ya que asi está deprecated
-        return new Date(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
     }
 
     public void btnAddPhotoOnAction(){
