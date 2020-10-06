@@ -1,3 +1,7 @@
-.button{
--fx-ba
+.button: hover{
+	-fx-background-color: #868599;
+}
+.button:pressed
+{
+	-fx-background-color : #1620A1;
 }

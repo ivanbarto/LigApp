@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -174,6 +175,7 @@ public class TeamOverviewController  implements Initializable {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Agregar o editar equipo");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
             Stage currentStage = (Stage)(teamTableView.getScene().getWindow());
             dialogStage.initOwner(currentStage);
             Scene scene = new Scene(page);

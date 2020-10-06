@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -162,6 +163,7 @@ public class PlayerOverviewController implements Initializable {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Agregar o editar jugador");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
             Stage currentStage = (Stage)(playerTableView.getScene().getWindow());
             dialogStage.initOwner(currentStage);
             Scene scene = new Scene(page);
