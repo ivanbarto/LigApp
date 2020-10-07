@@ -72,6 +72,7 @@ public class PlayerOverviewController implements Initializable {
         teamsToChoose.addAll(teamQueries.getTeams());
 
         populateTableView();
+        setButtonsStyle();
     }
 
     @FXML
@@ -189,5 +190,16 @@ public class PlayerOverviewController implements Initializable {
     @FXML
     public void btnRefreshOnAction(){
         populateTableView();
+    }
+
+    public void setButtonsStyle(){
+        btnAdd.setOnMouseEntered(mouseEvent -> btnAdd.setStyle("-fx-background-color: #03a306;"));
+        btnAdd.setOnMouseExited(mouseEvent -> btnAdd.setStyle("-fx-background-color: #0A2463;"));
+        btnDelete.setOnMouseEntered(mouseEvent -> btnDelete.setStyle("-fx-background-color: #ed0707;"));
+        btnDelete.setOnMouseExited(mouseEvent -> btnDelete.setStyle("-fx-background-color: #0A2463;"));
+        btnUpdate.setOnMouseEntered(mouseEvent -> btnUpdate.setStyle("-fx-background-color: #2c4dde;"));
+        btnUpdate.setOnMouseExited(mouseEvent -> btnUpdate.setStyle("-fx-background-color: #0A2463;"));
+        btnRefresh.setOnMouseEntered(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/flatastic-8/24/Refresh-icon.png)"));
+        btnRefresh.setOnMouseExited(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/mono-general-4/24/refresh-icon.png)"));
     }
 }

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,8 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CRUDTeamController {
+public class CRUDTeamController implements Initializable {
     @FXML
     private Button btnSave;
     @FXML
@@ -37,6 +40,11 @@ public class CRUDTeamController {
 
     public CRUDTeamController(){
         this.teamQueries = new TeamQueries();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setButtonsStyle();
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -136,4 +144,13 @@ public class CRUDTeamController {
     public boolean isSaveClicked() {
         return saveClicked;
     }
+
+    public void setButtonsStyle(){
+        btnSave.setOnMouseEntered(mouseEvent -> btnSave.setStyle("-fx-background-color: #03a306;"));
+        btnSave.setOnMouseExited(mouseEvent -> btnSave.setStyle("-fx-background-color: #0A2463;"));
+        btnCancel.setOnMouseEntered(mouseEvent -> btnCancel.setStyle("-fx-background-color: #ed0707;"));
+        btnCancel.setOnMouseExited(mouseEvent -> btnCancel.setStyle("-fx-background-color: #0A2463;"));
+    }
+
+
 }

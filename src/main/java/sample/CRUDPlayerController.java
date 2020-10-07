@@ -68,6 +68,7 @@ public class CRUDPlayerController implements Initializable {
 
         cboTeam.setItems(teamsToChoose);
         teamsToChoose.addAll(teamQueries.getTeams());
+        setButtonsStyle();
     }
 
     public void setDialogStage(Stage dialogStage){
@@ -183,5 +184,14 @@ public class CRUDPlayerController implements Initializable {
             return null;
         }
     }*/
+
+    public void setButtonsStyle(){
+        btnSave.setOnMouseEntered(mouseEvent -> btnSave.setStyle("-fx-background-color: #03a306;"));
+        btnSave.setOnMouseExited(mouseEvent -> btnSave.setStyle("-fx-background-color: #0A2463;"));
+        btnCancel.setOnMouseEntered(mouseEvent -> btnCancel.setStyle("-fx-background-color: #ed0707;"));
+        btnCancel.setOnMouseExited(mouseEvent -> btnCancel.setStyle("-fx-background-color: #0A2463;"));
+        btnAddPhoto.setOnMouseEntered(mouseEvent -> btnAddPhoto.setStyle("-fx-background-color: #03a306;"));
+        btnAddPhoto.setOnMouseExited(mouseEvent -> btnAddPhoto.setStyle("-fx-background-color: #0A2463;"));
+    }
 }
 
