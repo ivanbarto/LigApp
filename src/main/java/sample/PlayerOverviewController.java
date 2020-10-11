@@ -18,6 +18,7 @@ import sample.utils.FxDialogs;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -40,6 +41,8 @@ public class PlayerOverviewController implements Initializable {
     private TableColumn<Player, String> lastNameColumn;
     @FXML
     private TableColumn<Player, String> dniColumn;
+    @FXML
+    private TableColumn<Player, LocalDate> birthDateColumn;
     @FXML
     private TableColumn<Player, String> commentsColumn;
     @FXML
@@ -127,6 +130,7 @@ public class PlayerOverviewController implements Initializable {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         dniColumn.setCellValueFactory(cellData -> cellData.getValue().DNIProperty());
+        birthDateColumn.setCellValueFactory(cellData -> cellData.getValue().birthDateProperty());
         commentsColumn.setCellValueFactory(cellData -> cellData.getValue().commentsProperty());
         idTeamColumn.setCellValueFactory(cellData -> cellData.getValue().idTeamProperty().asObject());
 

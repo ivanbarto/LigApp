@@ -15,6 +15,7 @@
                 <TableColumn fx:id="firstNameColumn" minWidth="30.0" prefWidth="115.0" text="NOMBRE" />
                 <TableColumn fx:id="lastNameColumn" minWidth="30.0" prefWidth="115.0" text="APELLIDO" />
                 <TableColumn fx:id="dniColumn" minWidth="30.0" prefWidth="115.0" text="DNI" />
+            <TableColumn fx:id="birthDateColumn" minWidth="30.0" prefWidth="115.0" text="FECHA NACIMIENTO" />
             <TableColumn fx:id="commentsColumn" minWidth="30.0" prefWidth="115.0" text="COMENTARIOS" />
                 <TableColumn fx:id="idTeamColumn" minWidth="30.0" prefWidth="115.0" text="EQUIPO" />
             </columns>

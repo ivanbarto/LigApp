@@ -134,7 +134,7 @@ public class PlayerQueries {
                 playerToAdd.setFirstName(playersTable.getString("firstName"));
                 playerToAdd.setLastName(playersTable.getString("lastName"));
                 playerToAdd.setDNI(playersTable.getString("DNI"));
-                playerToAdd.setBirthDate(null);
+                playerToAdd.setBirthDate(playersTable.getDate("birthDate").toLocalDate());
                 playerToAdd.setHasMedicalClearance(playersTable.getBoolean("hasMedicalClearance"));
                 playerToAdd.setComments(playersTable.getString("comments"));
                 playerToAdd.setIsSuspended(playersTable.getBoolean("isSuspended"));
@@ -170,7 +170,7 @@ public class PlayerQueries {
                 playerToAdd.setFirstName(playersTable.getString("firstName"));
                 playerToAdd.setLastName(playersTable.getString("lastName"));
                 playerToAdd.setDNI(playersTable.getString("DNI"));
-                playerToAdd.setBirthDate(null);
+                playerToAdd.setBirthDate(playersTable.getDate("birthDate").toLocalDate());
                 playerToAdd.setHasMedicalClearance(playersTable.getBoolean("hasMedicalClearance"));
                 playerToAdd.setComments(playersTable.getString("comments"));
                 playerToAdd.setIsSuspended(playersTable.getBoolean("isSuspended"));
