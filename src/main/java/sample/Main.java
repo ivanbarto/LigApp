@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Stage primaryStage;
+    public static Stage primaryStage;
     private BorderPane rootLayout;
 
     public static Stage stage;
@@ -45,7 +45,7 @@ public class Main extends Application {
         this.primaryStage.initStyle(StageStyle.UNDECORATED);
         this.primaryStage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
 
-        initRootLayout();
+        initLogin();
 
 
         //showHomeScreen();
@@ -55,10 +55,6 @@ public class Main extends Application {
 
     public void initRootLayout() {
         try {
-            // Load root layout from fxml file.
-            /*FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/fxml/rootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();*/
             Parent rootLayout = FXMLLoader.load(getClass().getResource("/fxml/rootLayout.fxml"));
 
             // Show the scene containing the root layout.
@@ -72,6 +68,22 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public void initLogin() {
+        try {
+            Parent rootLayout = FXMLLoader.load(getClass().getResource("/fxml/login_screen.fxml"));
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("LigApp - Login");
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //TODO NO BORRAR ESTOS METODOS, POR SI TENEMOS PROBLEMAS MAS ADELANTE
     public void showHomeScreen(){
@@ -137,4 +149,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

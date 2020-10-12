@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="854.0" style="-fx-background-color: #1d1d1d;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+    <children>
+        <AnchorPane prefHeight="503.0" prefWidth="382.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="CENTER" prefHeight="503.0" prefWidth="382.0">
+                <children>
+                    <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="105.0" prefWidth="300.0" text="LigApp" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="72.0" />
+                        </font>
+                        <effect>
+                            <Glow level="0.76" />
+                        </effect>
+                    </Label>
+                    <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/iconoApp.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </VBox>
+        </AnchorPane>
+        <Pane layoutX="488.0" layoutY="100.0" AnchorPane.bottomAnchor="73.0" AnchorPane.topAnchor="100.0">
+            <children>
+                <TextField fx:id="etUsername" layoutX="7.0" onMouseClicked="#removeAlert" prefHeight="34.0" prefWidth="275.0" promptText="nombre de usuario">
+                    <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="25.33" radius="18.494999999999997" width="50.65" />
+                    </effect>
+                </TextField>
+                <PasswordField fx:id="etPassword" layoutX="7.0" layoutY="61.0" onMouseClicked="#removeAlert" prefHeight="34.0" prefWidth="275.0" promptText="contraseña">
+                    <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="25.33" radius="18.494999999999997" width="50.65" />
+                    </effect>
+                </PasswordField>
+                <Button fx:id="btnSignIn" layoutX="145.0" layoutY="125.0" mnemonicParsing="false" onMouseClicked="#onLogin" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #0A2463;" text="Ingresar" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Label fx:id="btnPasswordRecovery" alignment="CENTER" layoutX="8.0" layoutY="131.0" prefHeight="23.0" prefWidth="122.0" text="Recuperar contraseña" textFill="#5383ff">
+                    <font>
+                        <Font name="Segoe UI" size="12.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0">
+               <effect>
+                  <Glow />
+               </effect></Separator>
+                <Label fx:id="txtError" alignment="CENTER" layoutX="8.0" layoutY="95.0" prefHeight="23.0" prefWidth="275.0" textFill="#ff6354">
+                    <font>
+                        <Font name="Segoe UI" size="10.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
+   <effect>
+      <InnerShadow />
+   </effect>
+</AnchorPane>
