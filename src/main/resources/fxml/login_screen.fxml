@@ -60,6 +60,11 @@
                 </Label>
             </children>
         </Pane>
+      <ImageView fx:id="ivCloseLogin"  onMouseClicked="#closeLogin" fitHeight="20.0" fitWidth="20.0" layoutX="820.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../images/close.png" />
+          </image>
+      </ImageView>
     </children>
    <effect>
       <InnerShadow />

@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +22,9 @@ import static sample.Main.primaryStage;
 public class LoginController implements Initializable {
     @FXML
     private Button btnSignIn;
+
+    @FXML
+    private ImageView ivCloseLogin;
 
     @FXML
     private PasswordField etPassword;
@@ -45,6 +50,11 @@ public class LoginController implements Initializable {
             txtError.setText("Nombre de usuario o contraseña incorrectos");
         }
 
+    }
+
+    public void closeLogin(MouseEvent event){
+        Stage stage = (Stage) ivCloseLogin.getScene().getWindow();
+        stage.close();
     }
 
     public void removeAlert(MouseEvent event){
