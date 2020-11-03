@@ -44,7 +44,9 @@ public class PlayerOverviewController implements Initializable {
     @FXML
     private TableColumn<Player, LocalDate> birthDateColumn;
     @FXML
-    private TableColumn<Player, String> commentsColumn;
+    private TableColumn<Player, Boolean> isSuspendedColumn;
+    @FXML
+    private TableColumn<Player, String> numberOfDaysColumn;
     @FXML
     private TableColumn<Player, Integer> idTeamColumn;
     @FXML
@@ -131,7 +133,8 @@ public class PlayerOverviewController implements Initializable {
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         dniColumn.setCellValueFactory(cellData -> cellData.getValue().DNIProperty());
         birthDateColumn.setCellValueFactory(cellData -> cellData.getValue().birthDateProperty());
-        commentsColumn.setCellValueFactory(cellData -> cellData.getValue().commentsProperty());
+        isSuspendedColumn.setCellValueFactory(cellData -> cellData.getValue().isSuspendedProperty());
+        numberOfDaysColumn.setCellValueFactory(cellData -> cellData.getValue().numberOfSuspensionDaysProperty());
         idTeamColumn.setCellValueFactory(cellData -> cellData.getValue().idTeamProperty().asObject());
 
         /*
@@ -141,6 +144,7 @@ public class PlayerOverviewController implements Initializable {
         dniColumn.setCellValueFactory(new PropertyValueFactory<>("DNI"));
         idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));
          */
+        formatTableRows();
 
         if(cboTeam.getValue()==null){
             playerTableView.setItems(playerQueries.getPlayers());
@@ -196,7 +200,7 @@ public class PlayerOverviewController implements Initializable {
         populateTableView();
     }
 
-    public void setButtonsStyle(){
+    private void setButtonsStyle(){
         btnAdd.setOnMouseEntered(mouseEvent -> btnAdd.setStyle("-fx-background-color: #03a306;"));
         btnAdd.setOnMouseExited(mouseEvent -> btnAdd.setStyle("-fx-background-color: #0A2463;"));
         btnDelete.setOnMouseEntered(mouseEvent -> btnDelete.setStyle("-fx-background-color: #ed0707;"));
@@ -206,4 +210,56 @@ public class PlayerOverviewController implements Initializable {
         btnRefresh.setOnMouseEntered(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/flatastic-8/24/Refresh-icon.png)"));
         btnRefresh.setOnMouseExited(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/mono-general-4/24/refresh-icon.png)"));
     }
+
+    private void formatTableRows(){
+        isSuspendedColumn.setCellFactory(column -> new TableCell<Player,Boolean>(){
+            @Override
+            protected void updateItem(Boolean item, boolean empty){
+                super.updateItem(item, empty);
+
+                String suspendedStyle = "-fx-background-color: red; -fx-alignment: CENTER";
+                String non_suspendedStyle = "-fx-background-color: green; -fx-alignment: CENTER";
+
+                //Me pone el texto en "SI" y color rojo si el booleano es true
+                setText(empty ? null : item.booleanValue() ? "SI" : "NO");
+                setStyle(empty ? null : item.booleanValue()? suspendedStyle : non_suspendedStyle);
+
+            }
+        });
+    }
+  /*
+    importStatus.setCellFactory(tc -> new TableCell<Contact, Boolean>() {
+        @Override
+        protected void updateItem(Boolean item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? null :
+                    item.booleanValue() ? "imported" : "new");
+        }
+    });*/
+    /*
+    birthdayColumn.setCellFactory(column -> {
+        return new TableCell<Person, LocalDate>() {
+            @Override
+            protected void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+
+                } else {
+                    // Format date.
+                    setText(myDateFormatter.format(item));
+
+                    // Style all dates in March with a different color.
+                    if (item.getMonth() == Month.MARCH) {
+                        setTextFill(Color.CHOCOLATE);
+                        setStyle("-fx-background-color: yellow");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("");
+                    }
+                }
+            }
+        };
+    });*/
 }

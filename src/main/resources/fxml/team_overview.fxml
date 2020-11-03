@@ -18,13 +18,13 @@
    <center>
         <TableView fx:id="teamTableView" style="-fx-background-color: #1d1d1d; -fx-base: #1d1d1d; -fx-table-cell-border-color: transparent; -fx-table-header-border-color: transparent; -fx-control-inner-background: #1d1d1d;">
             <columns>
-                <TableColumn fx:id="idTeamColumn" editable="false" minWidth="30.0" prefWidth="50.0" text="ID" />
-                <TableColumn fx:id="nameColumn" editable="false" minWidth="30.0" prefWidth="120.0" text="NOMBRE" />
-                <TableColumn fx:id="shortNameColumn" editable="false" minWidth="30.0" prefWidth="100.0" text="ALIAS" />
-                <TableColumn fx:id="managerNameColumn" editable="false" minWidth="30.0" prefWidth="100.0" text="MANAGER" />
-            <TableColumn fx:id="managerEmailColumn" editable="false" minWidth="30.0" prefWidth="100.0" text="CORREO" />
-            <TableColumn fx:id="managerPhoneColumn" editable="false" minWidth="30.0" prefWidth="100.0" text="TELEFONO" />
-                <TableColumn fx:id="idLeagueColumn" editable="false" minWidth="30.0" prefWidth="100.0" text="LIGA" />
+                <TableColumn fx:id="idTeamColumn" editable="false" minWidth="30.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="ID" />
+                <TableColumn fx:id="nameColumn" editable="false" minWidth="30.0" prefWidth="120.0" style="-fx-alignment: CENTER;" text="NOMBRE" />
+                <TableColumn fx:id="shortNameColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="ALIAS" />
+                <TableColumn fx:id="managerNameColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="MANAGER" />
+            <TableColumn fx:id="managerEmailColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="CORREO" />
+            <TableColumn fx:id="managerPhoneColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="TELEFONO" />
+                <TableColumn fx:id="idLeagueColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="LIGA" />
             </columns>
          <effect>
             <InnerShadow height="50.0" radius="19.5" width="30.0" />
