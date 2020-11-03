@@ -30,7 +30,8 @@ public class DatabaseConnection {
     }
 
     //LOCAL CONNECTION FOR TESTING AND DEMOS
-    /*public Connection getConnection(){
+    /*
+    public Connection getConnection(){
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -42,7 +43,9 @@ public class DatabaseConnection {
         }
 
         return  databaseLink;
-    }*/
+    }
+    */
+
 
     public void disconnect (){
         try{
