@@ -1,13 +1,11 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -21,7 +19,7 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button btnHome;
     @FXML
-    private Button btnLeagues;
+    private Button btnMatches;
     @FXML
     private Button btnTeams;
     @FXML
@@ -56,6 +54,11 @@ public class MainScreenController implements Initializable {
     @FXML
     public void btnPlayersOnClick(ActionEvent event){
         showPlayerOverview();
+    }
+
+    @FXML
+    public void btnMatchesOnClick(ActionEvent event){
+        showMatchOverview();
     }
 
     @FXML
@@ -104,11 +107,25 @@ public class MainScreenController implements Initializable {
         rootLayout.setCenter(playerOverview);
     }
 
+    public void showMatchOverview(){
+        Parent matchOverview = null;
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/match_overview.fxml"));
+            matchOverview = loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        rootLayout.setCenter(matchOverview);
+    }
+
     public void setButtonsStyle(){
         btnHome.setOnMouseEntered(mouseEvent -> btnHome.setStyle("-fx-background-color: #44459e;"));
         btnHome.setOnMouseExited(mouseEvent -> btnHome.setStyle("-fx-background-color: #0A2463;"));
-        btnLeagues.setOnMouseEntered(mouseEvent -> btnLeagues.setStyle("-fx-background-color: #44459e;"));
-        btnLeagues.setOnMouseExited(mouseEvent -> btnLeagues.setStyle("-fx-background-color: #0A2463;"));
+        btnMatches.setOnMouseEntered(mouseEvent -> btnMatches.setStyle("-fx-background-color: #44459e;"));
+        btnMatches.setOnMouseExited(mouseEvent -> btnMatches.setStyle("-fx-background-color: #0A2463;"));
         btnTeams.setOnMouseEntered(mouseEvent -> btnTeams.setStyle("-fx-background-color: #44459e;"));
         btnTeams.setOnMouseExited(mouseEvent -> btnTeams.setStyle("-fx-background-color: #0A2463;"));
         btnPlayers.setOnMouseEntered(mouseEvent -> btnPlayers.setStyle("-fx-background-color: #44459e;"));

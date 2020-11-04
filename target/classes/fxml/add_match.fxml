@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CRUDPlayerController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0">
+          <top>
+              <AnchorPane prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #0A2463;" BorderPane.alignment="CENTER">
+                  <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/iconoApp.png" />
+                     </image>
+                  </ImageView>
+                      <Label layoutX="89.0" layoutY="23.0" prefHeight="35.0" prefWidth="361.0" text="AGREGAR/EDITAR PARTIDO" textFill="WHITE">
+                          <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                          </font>
+                      </Label>
+                  <Label fx:id="lblTeamName" layoutX="287.0" layoutY="23.0">
+                     <font>
+                        <Font name="Calibri Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  </children>
+              </AnchorPane>
+          </top>
+         <center>
+              <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #1d1d1d;" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label layoutX="66.0" layoutY="60.0" prefHeight="26.0" text="Código de acceso" textFill="WHITE">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                     <padding>
+                        <Insets bottom="3.0" />
+                     </padding>
+                      </Label>
+                      <TextField fx:id="txtFirstName" layoutX="200.0" layoutY="60.0" prefHeight="25.0" prefWidth="108.0">
+                     <effect>
+                        <InnerShadow height="8.34" radius="6.835" />
+                     </effect>
+                  </TextField>
+                      <TextField fx:id="txtDNI" layoutX="200.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0">
+                          <effect>
+                              <InnerShadow height="8.34" radius="6.835" />
+                          </effect>
+                      </TextField>
+                      <Button fx:id="btnSave" layoutX="105.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnSaveOnClick" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #0A2463;" text="Guardar" textFill="WHITE">
+                          <font>
+                              <Font name="Arial Bold" size="16.0" />
+                          </font>
+                      </Button>
+                      <Button fx:id="btnCancel" layoutX="105.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnCancelOnAction" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #0A2463;" text="Volver al Menu" textFill="WHITE">
+                          <font>
+                              <Font name="Arial Bold" size="16.0" />
+                          </font>
+                      </Button>
+                  <Label layoutX="81.0" layoutY="220.0" prefHeight="26.0" text="Fecha de Partido" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dpBirthDate" layoutX="200.0" layoutY="220.0" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: #535c52;">
+                     <effect>
+                        <InnerShadow height="8.34" radius="6.835" />
+                     </effect>
+                  </DatePicker>
+                  <Label fx:id="lblIdPlayer" layoutX="420.0" layoutY="475.0" text="idMatch" />
+                  <ComboBox fx:id="cboTeam" layoutX="200.0" layoutY="140.0" prefHeight="25.0" prefWidth="205.0">
+                     <effect>
+                        <InnerShadow height="8.34" radius="6.835" />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="105.0" layoutY="140.0" prefHeight="26.0" text="Equipo Local" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="64.0" layoutY="100.0" prefHeight="26.0" text="Jornada a disputar" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button id="btnAddPhoto" fx:id="btnAddPhoto1" layoutX="327.0" layoutY="60.0" mnemonicParsing="false" onAction="#btnAddPhotoOnAction" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #0A2463;" text="Generar" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="cboTeam1" layoutX="200.0" layoutY="180.0" prefHeight="25.0" prefWidth="205.0">
+                     <effect>
+                        <InnerShadow height="8.34" radius="6.835" />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="82.0" layoutY="180.0" prefHeight="26.0" text="Equipo Visitante" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="159.0" layoutY="260.0" prefHeight="26.0" text="Hora" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cboTeam2" layoutX="200.0" layoutY="300.0" prefHeight="25.0" prefWidth="200.0">
+                     <effect>
+                        <InnerShadow height="8.34" radius="6.835" />
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="148.0" layoutY="300.0" prefHeight="26.0" text="Estado" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Spinner layoutX="200.0" layoutY="260.0" prefHeight="25.0" prefWidth="97.0" />
+                  <Button id="btnAddPhoto" fx:id="btnAddPhoto11" layoutX="327.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnAddPhotoOnAction" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #0A2463;" text="Obtener" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  </children>
+              </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -38,30 +38,6 @@
                <Cursor fx:constant="HAND" />
             </cursor>
             </Button>
-            <Button fx:id="btnLeagues" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" style="-fx-background-color: #0A2463;" stylesheets="@../styles/style.css" text="LIGAS" textFill="WHITE">
-               <FlowPane.margin>
-                  <Insets bottom="0.5" top="0.5" />
-               </FlowPane.margin>
-                <font>
-                    <Font name="System Bold" size="20.0" />
-                </font>
-            <graphic>
-               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/ligas.png" />
-                  </image>
-                  <effect>
-                     <InnerShadow choke="1.0" color="WHITE" height="13.5" radius="5.875" width="12.0" />
-                  </effect>
-               </ImageView>
-            </graphic>
-            <effect>
-               <InnerShadow blurType="TWO_PASS_BOX" choke="0.1" color="WHITE" height="10.0" radius="4.5" width="10.0" />
-            </effect>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            </Button>
             <Button fx:id="btnTeams" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" onAction="#btnTeamsOnClick" style="-fx-background-color: #0A2463;" text="EQUIPOS" textAlignment="RIGHT" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="0.5" top="0.5" />
@@ -110,7 +86,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
             </Button>
-            <Button fx:id="btnTrackFace" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" style="-fx-background-color: #0A2463;" text="RECONOCIMIENTO" textFill="WHITE">
+            <Button fx:id="btnMatches" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" onAction="#btnMatchesOnClick" style="-fx-background-color: #0A2463;" stylesheets="@../styles/style.css" text="PARTIDOS" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="0.5" top="0.5" />
                </FlowPane.margin>
@@ -120,7 +96,31 @@
             <graphic>
                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../images/reconocimiento.png" />
+                     <Image url="@../images/ligas.png" />
+                  </image>
+                  <effect>
+                     <InnerShadow choke="1.0" color="WHITE" height="13.5" radius="5.875" width="12.0" />
+                  </effect>
+               </ImageView>
+            </graphic>
+            <effect>
+               <InnerShadow blurType="TWO_PASS_BOX" choke="0.1" color="WHITE" height="10.0" radius="4.5" width="10.0" />
+            </effect>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            </Button>
+            <Button fx:id="btnTrackFace" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" style="-fx-background-color: #0A2463;" text="SUSPENSIONES" textFill="WHITE">
+               <FlowPane.margin>
+                  <Insets bottom="0.5" top="0.5" />
+               </FlowPane.margin>
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            <graphic>
+               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/arbitro.png" />
                   </image>
                   <effect>
                      <InnerShadow choke="1.0" color="WHITE" height="13.5" radius="5.875" width="12.0" />

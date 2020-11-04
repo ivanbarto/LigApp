@@ -47,7 +47,7 @@
                       </Label>
                       <TextField fx:id="txtFirstName" layoutX="100.0" layoutY="94.0" prefWidth="300.0">
                      <effect>
-                        <InnerShadow blurType="GAUSSIAN" height="44.31999999999999" radius="23.2425" width="50.65" />
+                        <InnerShadow height="9.14" radius="7.035" />
                      </effect>
                   </TextField>
                       <Label layoutX="100.0" layoutY="119.0" prefHeight="26.0" text="Apellido" textFill="WHITE">
@@ -57,12 +57,12 @@
                       </Label>
                       <TextField fx:id="txtLastName" layoutX="100.0" layoutY="144.0" prefWidth="300.0">
                           <effect>
-                              <InnerShadow blurType="GAUSSIAN" height="25.33" radius="18.494999999999997" width="50.65" />
+                              <InnerShadow height="9.14" radius="7.035" />
                           </effect>
                       </TextField>
                       <TextField fx:id="txtDNI" layoutX="100.0" layoutY="194.0" prefWidth="300.0">
                           <effect>
-                              <InnerShadow blurType="GAUSSIAN" height="25.33" radius="18.494999999999997" width="50.65" />
+                              <InnerShadow height="9.14" radius="7.035" />
                           </effect>
                       </TextField>
                       <Button fx:id="btnSave" layoutX="101.0" layoutY="447.0" mnemonicParsing="false" onAction="#btnSaveOnClick" prefHeight="26.0" prefWidth="300.0" style="-fx-background-color: #0A2463;" text="Guardar" textFill="WHITE">
@@ -87,12 +87,12 @@
                   </Label>
                   <TextArea fx:id="areaComments" layoutX="100.0" layoutY="348.0" prefHeight="65.0" prefWidth="301.0" style="-fx-background-color: #535c52;">
                       <effect>
-                          <InnerShadow blurType="GAUSSIAN" height="25.33" radius="18.494999999999997" width="50.65" />
+                          <InnerShadow height="9.14" radius="7.035" />
                       </effect>
                   </TextArea>
                   <DatePicker fx:id="dpBirthDate" layoutX="100.0" layoutY="244.0" style="-fx-background-color: #535c52;">
                      <effect>
-                        <InnerShadow />
+                        <InnerShadow height="9.14" radius="7.035" />
                      </effect>
                   </DatePicker>
                   <Button id="btnAddPhoto" fx:id="btnAddPhoto" layoutX="100.0" layoutY="284.0" mnemonicParsing="false" onAction="#btnAddPhotoOnAction" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #0A2463;" text="Añadir foto" textFill="WHITE">
@@ -108,7 +108,7 @@
                   <Label fx:id="lblIdPlayer" layoutX="428.0" layoutY="580.0" text="idPlayer" />
                   <ComboBox fx:id="cboTeam" layoutX="157.0" layoutY="33.0" prefHeight="25.0" prefWidth="242.0">
                      <effect>
-                        <InnerShadow />
+                        <InnerShadow height="9.14" radius="7.035" />
                      </effect>
                   </ComboBox>
                   <Label layoutX="99.0" layoutY="33.0" prefHeight="26.0" text="Equipo" textFill="WHITE">
