@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import sample.utils.FxDialogs;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -44,10 +45,10 @@ public class PlayerQueries {
             ps.close();
             dbConnection.disconnect();
 
-            showSuccessAlert("Alta de Jugador", "¡JUGADOR AGREGADO CON ÉXITO!");
+            FxDialogs.showInformation("Alta de Jugador","¡JUGADOR AGREGADO CON EXITO!");
 
         } catch (SQLException ex) {
-            showSQLErrorAlert(ex, "Fallo insertar jugador en BBDD");
+            FxDialogs.showError("Fallo insertar jugador en BBDD", String.valueOf(ex));
         }
     }
 
@@ -61,13 +62,10 @@ public class PlayerQueries {
             ps.close();
             dbConnection.disconnect();
 
-           /* if (!playerIsModified) {
-                showSuccessAlert("eliminar jugador", "¡JUGADOR ELIMINADO!");
-            }*/
-            showSuccessAlert("eliminar jugador", "¡JUGADOR ELIMINADO!");
+            FxDialogs.showInformation("Eliminar jugador","¡JUGADOR ELIMINADO!");
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e, "Fallo eliminar jugador en BBDD");
+            FxDialogs.showError("Fallo eliminacion jugador BD",String.valueOf(e));
         }
     }
 
@@ -81,13 +79,10 @@ public class PlayerQueries {
             ps.close();
             dbConnection.disconnect();
 
-           /* if (!playerIsModified) {
-                showSuccessAlert("eliminar jugador", "¡JUGADOR ELIMINADO!");
-            }*/
-            showSuccessAlert("eliminar jugadores", "SE ELIMINARON TODOS LOS JUGADORES ASOCIADOS AL EQUIPO");
+            FxDialogs.showInformation("Eliminar jugadores","SE ELIMINARON TODOS LOS JUGADORES ASOCIADOS AL EQUIPO");
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e, "Fallo eliminar jugadores en BBDD");
+            FxDialogs.showError("Fallo eliminacion jugadores de equipo BD",String.valueOf(e));
         }
     }
 
@@ -111,10 +106,11 @@ public class PlayerQueries {
             ps.close();
             dbConnection.disconnect();
 
-            showSuccessAlert("Modificación de Jugador", "¡JUGADOR MODIFICADO CON ÉXITO!");
+
+            FxDialogs.showInformation("Actualizacion de Jugador","¡JUGADOR ACTUALIZADO CON EXITO!");
 
         } catch (SQLException ex) {
-            showSQLErrorAlert(ex, "Fallo modificar jugador en BBDD");
+            FxDialogs.showError("Fallo Actualizar Jugador",String.valueOf(ex));
         }
     }
 
@@ -148,7 +144,7 @@ public class PlayerQueries {
             dbConnection.disconnect();
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e, "player list error");
+            FxDialogs.showError("Error en traer registros",String.valueOf(e));
         }
 
         return playersList;
@@ -184,12 +180,11 @@ public class PlayerQueries {
             dbConnection.disconnect();
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e, "team player list error");
+            FxDialogs.showError("Error en traer registros",String.valueOf(e));
         }
 
         return playersList;
     }
-
 
     public Player getPlayer(int idPlayer){
         Player player  = new Player();
@@ -219,25 +214,10 @@ public class PlayerQueries {
             dbConnection.disconnect();
 
         } catch (SQLException e) {
-            showSQLErrorAlert(e, "get player error");
+            FxDialogs.showError("Error en traer registro",String.valueOf(e));
         }
 
         return player;
     }
 
-    public void showSQLErrorAlert(SQLException errorMessage, String title) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(String.valueOf(errorMessage));
-        alert.showAndWait();
-    }
-
-    public void showSuccessAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

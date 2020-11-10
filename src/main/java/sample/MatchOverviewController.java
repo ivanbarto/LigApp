@@ -54,8 +54,8 @@ public class MatchOverviewController implements Initializable {
         crudMatchController = new CRUDMatchController();
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
-        //populateTableView();
-        //setButtonsStyle();
+        populateTableView();
+        setButtonsStyle();
     }
 
     @FXML
