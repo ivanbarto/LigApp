@@ -92,7 +92,6 @@ public class CRUDPlayerController implements Initializable {
         this.playerIsModified = playerIsModified;
     }
 
-    //TODO ver como implementar eso
     public void btnSaveOnClick(){
         if(this.playerIsModified){
             btnSave.setOnAction(event -> btnUpdateOnClick());
@@ -103,12 +102,10 @@ public class CRUDPlayerController implements Initializable {
 
     public void btnCreateOnClick() {
         if (validFields()) {
-            //TODO A algunos de estos campos se le pusieron valores por defecto, ver si dejarlo asi o cambiarlo
             player = new Player();
             player.setFirstName(txtFirstName.getText());
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
-            //TODO ver como carajo solucionar que se carggue bien la fecha
             player.setBirthDate(dpBirthDate.getValue());
             player.setHasMedicalClearance(true);
             player.setComments(areaComments.getText());
@@ -127,15 +124,12 @@ public class CRUDPlayerController implements Initializable {
 
     public void btnUpdateOnClick() {
         if (validFields()) {
-            //Por ahora modificar, solo modifica lo visible. No se toca ningun otro campo
             player.setFirstName(txtFirstName.getText());
             player.setLastName(txtLastName.getText());
             player.setDNI(txtDNI.getText());
             player.setBirthDate(dpBirthDate.getValue());
             //player.setHasMedicalClearance(true);
             player.setComments(areaComments.getText());
-            //player.setIsSuspended(false);
-            //player.setNumberOfSuspensionDays(null);
             player.setIdTeam(cboTeam.getValue().getIdTeam());
             player.setPhoto(base64Encoded);
 
@@ -149,11 +143,6 @@ public class CRUDPlayerController implements Initializable {
 
     public void btnCancelOnAction() {
         dialogStage.close();
-    }
-
-    private boolean validFields() {
-        //TODO Hacer lo necesario para validar que la entrada de datos sea correcta
-        return true;
     }
 
     public boolean isSaveClicked() {
@@ -173,17 +162,11 @@ public class CRUDPlayerController implements Initializable {
             lblSelectedPhoto.setText("Error cargando foto");
 
         }
-
     }
 
-    //TODO esto es para poder sacar la edad del tipo para permitirle o no estar en la liga, verlo
-    /*public static String calculateAge(LocalDate birthDate, LocalDate currentDate) {
-        if ((birthDate != null) && (currentDate != null)) {
-            return String.valueOf(Period.between(birthDate, currentDate).getYears());
-        } else {
-            return null;
-        }
-    }*/
+    private boolean validFields() {
+        return true;
+    }
 
     public void setButtonsStyle(){
         btnSave.setOnMouseEntered(mouseEvent -> btnSave.setStyle("-fx-background-color: #03a306;"));

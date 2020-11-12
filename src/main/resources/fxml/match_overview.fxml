@@ -16,7 +16,7 @@
 
 <BorderPane style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MatchOverviewController">
    <center>
-        <TableView fx:id="teamTableView" style="-fx-background-color: #1d1d1d; -fx-base: #1d1d1d; -fx-table-cell-border-color: transparent; -fx-table-header-border-color: transparent; -fx-control-inner-background: #1d1d1d;">
+        <TableView fx:id="matchTableView" style="-fx-background-color: #1d1d1d; -fx-base: #1d1d1d; -fx-table-cell-border-color: transparent; -fx-table-header-border-color: transparent; -fx-control-inner-background: #1d1d1d;">
             <columns>
                 <TableColumn fx:id="idMatchColumn" editable="false" minWidth="30.0" prefWidth="50.0" style="-fx-alignment: CENTER;" text="ID" />
                 <TableColumn fx:id="accessCodeColumn" editable="false" minWidth="30.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="CODIGO" />

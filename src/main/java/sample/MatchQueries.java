@@ -120,4 +120,37 @@ public class MatchQueries {
 
         return matchesList;
     }
+
+    public Match getMatch(int idMatch){
+        Match match = new Match();
+
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_MATCH_QUERY);
+            ps.setInt(1,idMatch);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Match matchToAdd = new Match();
+                matchToAdd.setIdMatch(rs.getInt("id"));
+                matchToAdd.setAccessCode(rs.getInt("accessCode"));
+                matchToAdd.setMeeting(rs.getInt("meeting"));
+                matchToAdd.setIdTeam1(rs.getInt("idTeam1"));
+                matchToAdd.setIdTeam2(rs.getInt("idTeam2"));
+                matchToAdd.setDate(rs.getDate("date").toLocalDate());
+                matchToAdd.setTime(rs.getString("time"));
+                matchToAdd.setState(rs.getString("state"));
+
+            }
+
+            ps.close();
+            dbConnection.disconnect();
+
+        } catch (SQLException e) {
+            FxDialogs.showError("Error en traer registro",String.valueOf(e));
+        }
+
+        return match;
+    }
 }

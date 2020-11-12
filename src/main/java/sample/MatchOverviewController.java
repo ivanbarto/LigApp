@@ -60,6 +60,7 @@ public class MatchOverviewController implements Initializable {
 
     @FXML
     private void btnAddMatchOnClick() {
+
     }
 
     @FXML
