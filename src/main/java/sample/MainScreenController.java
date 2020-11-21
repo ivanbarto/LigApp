@@ -27,7 +27,7 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button btnSettings;
     @FXML
-    private Button btnTrackFace;
+    private Button btnSuspensions;
     @FXML
     private Button btnClose;
 
@@ -37,32 +37,31 @@ public class MainScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showHomeScreen();
         setButtonsStyle();
-
     }
 
-
     @FXML
-    public void btnHomeOnClick(ActionEvent event){
+    public void btnHomeOnClick(){
         showHomeScreen();
     }
 
     @FXML
-    public void btnTeamsOnClick(ActionEvent event){
+    public void btnTeamsOnClick(){
         showTeamOverview();
     }
 
     @FXML
-    public void btnPlayersOnClick(ActionEvent event){
+    public void btnPlayersOnClick(){
         showPlayerOverview();
     }
 
     @FXML
-    public void btnMatchesOnClick(ActionEvent event){
-        showMatchOverview();
-    }
+    public void btnMatchesOnClick(){ showMatchOverview(); }
 
     @FXML
-    public void btnCloseOnClick(ActionEvent event){
+    public void btnSuspensionsOnClick(){ showSuspensionOverview(); }
+
+    @FXML
+    public void btnCloseOnClick(){
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
@@ -121,6 +120,22 @@ public class MainScreenController implements Initializable {
         rootLayout.setCenter(matchOverview);
     }
 
+    public void showSuspensionOverview(){
+        Parent matchOverview = null;
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/suspension_overview.fxml"));
+            matchOverview = loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        rootLayout.setCenter(matchOverview);
+    }
+
+
+
     public void setButtonsStyle(){
         btnHome.setOnMouseEntered(mouseEvent -> btnHome.setStyle("-fx-background-color: #44459e;"));
         btnHome.setOnMouseExited(mouseEvent -> btnHome.setStyle("-fx-background-color: #0A2463;"));
@@ -132,8 +147,8 @@ public class MainScreenController implements Initializable {
         btnPlayers.setOnMouseExited(mouseEvent -> btnPlayers.setStyle("-fx-background-color: #0A2463;"));
         btnSettings.setOnMouseEntered(mouseEvent -> btnSettings.setStyle("-fx-background-color: #44459e;"));
         btnSettings.setOnMouseExited(mouseEvent -> btnSettings.setStyle("-fx-background-color: #0A2463;"));
-        btnTrackFace.setOnMouseEntered(mouseEvent -> btnTrackFace.setStyle("-fx-background-color: #44459e;"));
-        btnTrackFace.setOnMouseExited(mouseEvent -> btnTrackFace.setStyle("-fx-background-color: #0A2463;"));
+        btnSuspensions.setOnMouseEntered(mouseEvent -> btnSuspensions.setStyle("-fx-background-color: #44459e;"));
+        btnSuspensions.setOnMouseExited(mouseEvent -> btnSuspensions.setStyle("-fx-background-color: #0A2463;"));
         btnClose.setOnMouseEntered(mouseEvent -> btnClose.setStyle("-fx-background-color: #c41212;"));
         btnClose.setOnMouseExited(mouseEvent -> btnClose.setStyle("-fx-background-color: #0A2463;"));
     }

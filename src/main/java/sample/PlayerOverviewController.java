@@ -88,22 +88,11 @@ public class PlayerOverviewController implements Initializable {
         populateTableView();
     }
 
-    /*
-    * lblStatus.setText("Eliminando...");
-        playerQueries.removeTeamPlayers(this.selectedTeamId);
-        teamQueries.removeTeam(this.selectedTeamId);
-        //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
-        lblStatus.setText("");
-        btnDelete.setDisable(true);
-        btnUpdate.setDisable(true);
-        populateTableView();
-    * */
 
     @FXML
-    private void btnDeletePlayerOnClick(ActionEvent event) {
+    private void btnDeletePlayerOnClick() {
         lblStatus.setText("Eliminando...");
         playerQueries.removePlayer(this.selectedPlayerId);
-        //TODO:sacar de la tabla la fila borrada, si tuvo exito la eliminacion, lo cual se peude determinar devolviendo true/false desde el metodo removeplayer. Tamblien bloquear el boton.
         lblStatus.setText("");
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
@@ -111,7 +100,7 @@ public class PlayerOverviewController implements Initializable {
     }
 
     @FXML
-    private void btnUpdatePlayerOnclick(ActionEvent event) {
+    private void btnUpdatePlayerOnclick() {
         Player selectedPlayer = playerTableView.getSelectionModel().getSelectedItem();
         if(selectedPlayer != null){
             boolean saveClicked = showPlayerEditDialog(this.selectedPlayerId, true);
@@ -134,13 +123,6 @@ public class PlayerOverviewController implements Initializable {
         numberOfDaysColumn.setCellValueFactory(cellData -> cellData.getValue().numberOfSuspensionDaysProperty());
         idTeamColumn.setCellValueFactory(cellData -> cellData.getValue().idTeamProperty().asObject());
 
-        /*
-        idPlayerColumn.setCellValueFactory(new PropertyValueFactory<>("idPlayer"));
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        dniColumn.setCellValueFactory(new PropertyValueFactory<>("DNI"));
-        idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));
-         */
         formatTableRows();
 
         if(cboTeam.getValue()==null){

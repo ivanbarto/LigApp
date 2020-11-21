@@ -110,7 +110,7 @@
                <Cursor fx:constant="DEFAULT" />
             </cursor>
             </Button>
-            <Button fx:id="btnTrackFace" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" style="-fx-background-color: #0A2463;" text="SUSPENSIONES" textFill="WHITE">
+            <Button fx:id="btnSuspensions" alignment="BASELINE_LEFT" graphicTextGap="10.0" minHeight="45.0" minWidth="245.0" mnemonicParsing="false" onAction="#btnSuspensionsOnClick" style="-fx-background-color: #0A2463;" text="SUSPENSIONES" textFill="WHITE">
                <FlowPane.margin>
                   <Insets bottom="0.5" top="0.5" />
                </FlowPane.margin>

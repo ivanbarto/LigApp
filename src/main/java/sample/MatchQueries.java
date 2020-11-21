@@ -132,15 +132,14 @@ public class MatchQueries {
 
             while (rs.next()) {
 
-                Match matchToAdd = new Match();
-                matchToAdd.setIdMatch(rs.getInt("id"));
-                matchToAdd.setAccessCode(rs.getInt("accessCode"));
-                matchToAdd.setMeeting(rs.getInt("meeting"));
-                matchToAdd.setIdTeam1(rs.getInt("idTeam1"));
-                matchToAdd.setIdTeam2(rs.getInt("idTeam2"));
-                matchToAdd.setDate(rs.getDate("date").toLocalDate());
-                matchToAdd.setTime(rs.getString("time"));
-                matchToAdd.setState(rs.getString("state"));
+                match.setIdMatch(rs.getInt("id"));
+                match.setAccessCode(rs.getInt("accessCode"));
+                match.setMeeting(rs.getInt("meeting"));
+                match.setIdTeam1(rs.getInt("idTeam1"));
+                match.setIdTeam2(rs.getInt("idTeam2"));
+                match.setDate(rs.getDate("date").toLocalDate());
+                match.setTime(rs.getString("time"));
+                match.setState(rs.getString("state"));
 
             }
 

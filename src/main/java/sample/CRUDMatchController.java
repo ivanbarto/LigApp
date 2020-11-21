@@ -79,6 +79,7 @@ public class CRUDMatchController implements Initializable {
         dpDate.setValue(match.getDate());
         txtTime.setText(match.getTime());
         cboState.setValue(match.getState());
+
     }
 
     public void setIsModified(boolean matchIsModified){
@@ -122,7 +123,7 @@ public class CRUDMatchController implements Initializable {
             match.setTime(txtTime.getText());
             match.setState(cboState.getValue());
 
-            matchQueries.addMatch(match);
+            matchQueries.updateMatch(match);
 
             saveClicked = true;
             dialogStage.close();
@@ -140,9 +141,14 @@ public class CRUDMatchController implements Initializable {
         txtAccessCode.setText(String.valueOf(accesCode));
     }
 
+    public boolean isSaveClicked() {
+        return saveClicked;
+    }
+
     private boolean validFields() {
         return true;
     }
+
     public void setButtonsStyle(){
         btnSave.setOnMouseEntered(mouseEvent -> btnSave.setStyle("-fx-background-color: #03a306;"));
         btnSave.setOnMouseExited(mouseEvent -> btnSave.setStyle("-fx-background-color: #0A2463;"));

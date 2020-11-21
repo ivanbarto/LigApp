@@ -70,8 +70,6 @@ public class TeamOverviewController  implements Initializable {
 
     @FXML
     private void btnAddTeamOnClick() {
-        /*Team tempTeam = new Team();*/
-        //Se pone 0 para que cargue un Team nulo desde el constructor, asi el resto de los campos de add_player quedan vacíos
         boolean saveClicked = showTeamEditDialog(0, false);
         if (saveClicked) {
             crudTeamController.btnCreateOnClick();
@@ -79,21 +77,6 @@ public class TeamOverviewController  implements Initializable {
         populateTableView();
     }
 
-
-
-    /*@FXML
-    private void btnAddTeamOnClick(ActionEvent event) {
-        try {
-            Parent createTeamParent = FXMLLoader.load(getClass().getResource("/fxml/add_team.fxml"));
-            Scene createTeamScene = new Scene(createTeamParent);
-
-            Stage stage = new Stage();
-            stage.setScene(createTeamScene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @FXML
     private void btnDeleteTeamOnClick() {
@@ -122,21 +105,6 @@ public class TeamOverviewController  implements Initializable {
         }
         populateTableView();
     }
-/*
-    @FXML
-    private void handleEditPerson() {
-        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
-            if (okClicked) {
-                showPersonDetails(selectedPerson);
-            }
-
-        } else {
-            FxDialogs.showInformation("No person Selected","Please select person in the table");
-        }
-    }
-*/
 
     private void populateTableView(){
         idTeamColumn.setCellValueFactory(cellData -> cellData.getValue().idTeamProperty().asObject());
@@ -146,13 +114,6 @@ public class TeamOverviewController  implements Initializable {
         managerEmailColumn.setCellValueFactory(cellData -> cellData.getValue().managerEmailProperty());
         managerPhoneColumn.setCellValueFactory(cellData -> cellData.getValue().managerPhoneProperty());
         idLeagueColumn.setCellValueFactory(cellData -> cellData.getValue().idLeagueProperty().asObject());
-
-
-        /*idTeamColumn.setCellValueFactory(new PropertyValueFactory<>("idTeam"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        shortNameColumn.setCellValueFactory(new PropertyValueFactory<>("shortName"));
-        managerNameColumn.setCellValueFactory(new PropertyValueFactory<>("managerName"));
-        idLeagueColumn.setCellValueFactory(new PropertyValueFactory<>("idLeague"));*/
 
         teamTableView.setItems(teamQueries.getTeams());
 
@@ -215,5 +176,4 @@ public class TeamOverviewController  implements Initializable {
         btnRefresh.setOnMouseExited(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/mono-general-4/24/refresh-icon.png)"));
     }
 
-    //TODO metodo que me diga si está o no seleccionado un equipo en la tabla
 }
