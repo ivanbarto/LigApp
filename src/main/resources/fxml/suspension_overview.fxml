@@ -257,7 +257,7 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                      <Button fx:id="btnEndMatch" alignment="CENTER" graphicTextGap="0.0" minHeight="32.0" minWidth="85.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #0A2463;" text="FINALIZAR PARTIDO" textFill="WHITE">
+                      <Button fx:id="btnEndMatch" alignment="CENTER" graphicTextGap="0.0" minHeight="32.0" minWidth="85.0" mnemonicParsing="false" onAction="#btnEndMatchOnClick" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #0A2463;" text="FINALIZAR PARTIDO" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

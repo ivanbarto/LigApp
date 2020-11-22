@@ -17,7 +17,7 @@ public class MatchQueries {
     private final String GET_ALL_MATCHES_QUERY = "SELECT * FROM matches";
     private final String UPDATE_MATCH_QUERY = "UPDATE matches SET accessCode=?,meeting=?,idTeam1=?,idTeam2=?,date=?,time=?,state=? WHERE id=?";
     private final String GET_PLAYED_MATCHES_QUERY = "SELECT * FROM matches WHERE matches.state = 'Jugado'";
-
+    private final String END_MATCH_QUERY = "UPDATE matches SET accessCode=?, state=? WHERE id=?";
 
     DatabaseConnection dbConnection;
 
@@ -187,5 +187,24 @@ public class MatchQueries {
         }
 
         return playedMatches;
+    }
+
+    public void endMatch(String finishedState, int idMatch){
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(END_MATCH_QUERY);
+            ps.setInt(1, 0);
+            ps.setString(2, finishedState);
+            ps.setInt(3, idMatch);
+
+            ps.execute();
+            ps.close();
+            dbConnection.disconnect();
+
+            FxDialogs.showInformation("Actualizacion de Partido","¡PARTIDO ACTUALIZADO CON EXITO!");
+
+        } catch (SQLException ex) {
+            FxDialogs.showError("Fallo Actualizar partido",String.valueOf(ex));
+        }
     }
 }

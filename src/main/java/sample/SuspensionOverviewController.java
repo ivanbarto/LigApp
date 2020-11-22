@@ -74,6 +74,7 @@ public class SuspensionOverviewController implements Initializable {
     private ObservableList<Match> playedMatchesToChoose;
     private int selectedPlayerIdTeam1;
     private int selectedPlayerIdTeam2;
+    private int selectedMatchId;
 
     public SuspensionOverviewController(){
         this.matchQueries = new MatchQueries();
@@ -90,7 +91,6 @@ public class SuspensionOverviewController implements Initializable {
 
         cboMatches.setItems(playedMatchesToChoose);
         playedMatchesToChoose.addAll(matchQueries.getPlayedMatches());
-        btnEndMatch.setDisable(true);
         btnSuspendPlayer1.setDisable(true);
         btnSuspendPlayer2.setDisable(true);
     }
@@ -122,7 +122,7 @@ public class SuspensionOverviewController implements Initializable {
             lblTeam2.setText("Equipo:");
 
         }else{
-
+            this.selectedMatchId = match.getIdMatch();
             lblAccessCode.setText(String.valueOf(match.getAccessCode()));
             lblDate.setText(String.valueOf(match.getDate()));
             lblMeeting.setText(String.valueOf(match.getMeeting()));
@@ -161,6 +161,14 @@ public class SuspensionOverviewController implements Initializable {
     public void btnSuspendPlayer2OnClick(){
         int numberOfSuspensionDays = Integer.parseInt(FxDialogs.showTextInput("SUSPENDER JUGADOR","Ingrese la cantidad de fechas de suspensión que quiere dar al jugador","1"));
         playerQueries.suspendPlayer(numberOfSuspensionDays,this.selectedPlayerIdTeam2);
+    }
+
+    @FXML
+    public void btnEndMatchOnClick(){
+        String choice = FxDialogs.showConfirm("Confirmar elección", "¿Está seguro que desea finalizar el partido?");
+        if(choice.equals("OK")){
+            matchQueries.endMatch("Finalizado", this.selectedMatchId);
+        }
     }
 
     private void formatTableRows(){
