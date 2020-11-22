@@ -109,16 +109,10 @@ public class MatchOverviewController implements Initializable {
         if (selectedMatch != null) {
             String state = stateColumn.getCellData(matchTableView.getSelectionModel().getSelectedIndex());
             if (state.equals("Jugado")) {
-                /*mainScreenController = new MainScreenController();
-                mainScreenController.showSuspensionOverview();*/
-
+                FxDialogs.showInformation("Estado Jugado","Manejo suspensiones estado jugado");
             } else {
                 FxDialogs.showError("Estado diferente a 'Jugado'", "No se puede manejar suspensiones de partidos creados o finalizados");
             }
-            /*boolean saveClicked = showMatchEditDialog(this.selectedMatchId, true);
-            if(saveClicked){
-                crudMatchController.btnUpdateOnClick();
-            }*/
         } else {
             FxDialogs.showError("Error ", "No se selecciono un partido");
         }
@@ -171,38 +165,6 @@ public class MatchOverviewController implements Initializable {
             /*controller.setPlayer(player);*/
             controller.setIdMatch(idMatch);
             controller.setIsModified(matchIsModified);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-            return controller.isSaveClicked();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean showSuspensionDialog(int idMatch, boolean matchIsModified) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/fxml/suspension_overview.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Agregar o editar suspensiones");
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.getIcons().add(new Image("file:src/main/resources/images/icon.png"));
-            Stage currentStage = (Stage) (matchTableView.getScene().getWindow());
-            dialogStage.initOwner(currentStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the match into the controller.
-            CRUDMatchController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.setIdMatch(idMatch);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

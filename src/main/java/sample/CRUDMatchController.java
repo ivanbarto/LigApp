@@ -114,7 +114,6 @@ public class CRUDMatchController implements Initializable {
 
     public void btnUpdateOnClick() {
         if (validFields()) {
-            match = new Match();
             match.setAccessCode(Integer.parseInt(txtAccessCode.getText()));
             match.setMeeting(Integer.parseInt(txtMeeting.getText()));
             match.setIdTeam1(cboTeam1.getValue().getIdTeam());

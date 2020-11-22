@@ -1,9 +1,19 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import sample.utils.FxDialogs;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,13 +60,20 @@ public class SuspensionOverviewController implements Initializable {
     @FXML
     private Label lblTeam2;
     @FXML
-    private Button btnSuspendPlayer;
+    private Button btnSuspendPlayer1;
+    @FXML
+    private Button btnSuspendPlayer2;
     @FXML
     private Button btnEndMatch;
+    @FXML
+    private ComboBox<Match> cboMatches;
 
     private MatchQueries matchQueries;
     private TeamQueries teamQueries;
     private PlayerQueries playerQueries;
+    private ObservableList<Match> playedMatchesToChoose;
+    private int selectedPlayerIdTeam1;
+    private int selectedPlayerIdTeam2;
 
     public SuspensionOverviewController(){
         this.matchQueries = new MatchQueries();
@@ -68,11 +85,15 @@ public class SuspensionOverviewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateTableView();
         setButtonsStyle();
+
+        playedMatchesToChoose = FXCollections.observableArrayList();
+
+        cboMatches.setItems(playedMatchesToChoose);
+        playedMatchesToChoose.addAll(matchQueries.getPlayedMatches());
+        btnEndMatch.setDisable(true);
+        btnSuspendPlayer1.setDisable(true);
+        btnSuspendPlayer2.setDisable(true);
     }
-
-
-
-
 
     private void populateTableView() {
         idPlayerColumn1.setCellValueFactory(cellData -> cellData.getValue().idPlayerProperty().asObject());
@@ -89,24 +110,57 @@ public class SuspensionOverviewController implements Initializable {
 
         formatTableRows();
 
-        playerTableView1.setItems(playerQueries.getTeamPlayers(1/*cboTeam.getValue().getIdTeam())*/));
-        playerTableView2.setItems(playerQueries.getTeamPlayers(10/*cboTeam.getValue().getIdTeam())*/));
+        Match match = cboMatches.getValue();
+
+        if(match==null){
+            lblAccessCode.setText("");
+            lblDate.setText("");
+            lblMeeting.setText("");
+            lblState.setText("");
+            lblTime.setText("");
+            lblTeam1.setText("Equipo:");
+            lblTeam2.setText("Equipo:");
+
+        }else{
+
+            lblAccessCode.setText(String.valueOf(match.getAccessCode()));
+            lblDate.setText(String.valueOf(match.getDate()));
+            lblMeeting.setText(String.valueOf(match.getMeeting()));
+            lblState.setText(match.getState());
+            lblTime.setText(match.getTime());
+            lblTeam1.setText("Equipo: "+teamQueries.getTeam(match.getIdTeam1()).getName());
+            lblTeam2.setText("Equipo: "+teamQueries.getTeam(match.getIdTeam2()).getName());
+
+            playerTableView1.setItems(playerQueries.getTeamPlayers(match.getIdTeam1()));
+            playerTableView2.setItems(playerQueries.getTeamPlayers(match.getIdTeam2()));
+        }
+
 
         playerTableView1.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 1) {
-                /*selectedPlayerId = idPlayerColumn.getCellData(playerTableView.getSelectionModel().getSelectedIndex());
-                btnDelete.setDisable(false);
-                btnUpdate.setDisable(false);*/
+                btnSuspendPlayer1.setDisable(false);
+                selectedPlayerIdTeam1 = idPlayerColumn1.getCellData(playerTableView1.getSelectionModel().getSelectedIndex());
             }
         });
 
-        playerTableView1.setOnMouseClicked(mouseEvent -> {
+        playerTableView2.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 1) {
-                /*selectedPlayerId = idPlayerColumn.getCellData(playerTableView.getSelectionModel().getSelectedIndex());
-                btnDelete.setDisable(false);
-                btnUpdate.setDisable(false);*/
+                btnSuspendPlayer2.setDisable(false);
+                selectedPlayerIdTeam2 = idPlayerColumn2.getCellData(playerTableView2.getSelectionModel().getSelectedIndex());
             }
         });
+    }
+
+    @FXML
+    public void btnSuspendPlayer1OnClick(){
+        int numberOfSuspensionDays = Integer.parseInt(FxDialogs.showTextInput("SUSPENDER JUGADOR","Ingrese la cantidad de fechas de suspensión que quiere dar al jugador","1"));
+        playerQueries.suspendPlayer(numberOfSuspensionDays,this.selectedPlayerIdTeam1);
+    }
+
+    @FXML
+    public void btnSuspendPlayer2OnClick(){
+        int numberOfSuspensionDays = Integer.parseInt(FxDialogs.showTextInput("SUSPENDER JUGADOR","Ingrese la cantidad de fechas de suspensión que quiere dar al jugador","1"));
+        playerQueries.suspendPlayer(numberOfSuspensionDays,this.selectedPlayerIdTeam2);
     }
 
     private void formatTableRows(){
@@ -141,11 +195,18 @@ public class SuspensionOverviewController implements Initializable {
     }
 
     public void setButtonsStyle() {
-        btnSuspendPlayer.setOnMouseEntered(mouseEvent -> btnSuspendPlayer.setStyle("-fx-background-color: #ed0707;"));
-        btnSuspendPlayer.setOnMouseExited(mouseEvent -> btnSuspendPlayer.setStyle("-fx-background-color: #0A2463;"));
+        btnSuspendPlayer1.setOnMouseEntered(mouseEvent -> btnSuspendPlayer1.setStyle("-fx-background-color: #ed0707;"));
+        btnSuspendPlayer1.setOnMouseExited(mouseEvent -> btnSuspendPlayer1.setStyle("-fx-background-color: #0A2463;"));
+        btnSuspendPlayer2.setOnMouseEntered(mouseEvent -> btnSuspendPlayer2.setStyle("-fx-background-color: #ed0707;"));
+        btnSuspendPlayer2.setOnMouseExited(mouseEvent -> btnSuspendPlayer2.setStyle("-fx-background-color: #0A2463;"));
         btnEndMatch.setOnMouseEntered(mouseEvent -> btnEndMatch.setStyle("-fx-background-color: #2c4dde;"));
         btnEndMatch.setOnMouseExited(mouseEvent -> btnEndMatch.setStyle("-fx-background-color: #0A2463;"));
         btnRefresh.setOnMouseEntered(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/flatastic-8/24/Refresh-icon.png)"));
         btnRefresh.setOnMouseExited(mouseEvent -> btnRefresh.setStyle("-fx-graphic: url(https://icons.iconarchive.com/icons/custom-icon-design/mono-general-4/24/refresh-icon.png)"));
+    }
+
+    @FXML
+    public void btnRefreshOnAction(){
+        populateTableView();
     }
 }

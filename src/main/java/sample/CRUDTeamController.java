@@ -60,7 +60,6 @@ public class CRUDTeamController implements Initializable {
         txtManagerName.setText(team.getManagerName());
         txtManagerEmail.setText(team.getManagerEmail());
         txtManagerPhone.setText(team.getManagerPhone());
-        //TODO ACA SIGUE FALTANDO IMPLEMENTAR LO DE LIGAS
     }
 
     public void setIsModified(boolean teamIsModified){

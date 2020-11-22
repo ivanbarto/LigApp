@@ -206,39 +206,4 @@ public class PlayerOverviewController implements Initializable {
             }
         });
     }
-  /*
-    importStatus.setCellFactory(tc -> new TableCell<Contact, Boolean>() {
-        @Override
-        protected void updateItem(Boolean item, boolean empty) {
-            super.updateItem(item, empty);
-            setText(empty ? null :
-                    item.booleanValue() ? "imported" : "new");
-        }
-    });*/
-    /*
-    birthdayColumn.setCellFactory(column -> {
-        return new TableCell<Person, LocalDate>() {
-            @Override
-            protected void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (item == null || empty) {
-                    setText(null);
-
-                } else {
-                    // Format date.
-                    setText(myDateFormatter.format(item));
-
-                    // Style all dates in March with a different color.
-                    if (item.getMonth() == Month.MARCH) {
-                        setTextFill(Color.CHOCOLATE);
-                        setStyle("-fx-background-color: yellow");
-                    } else {
-                        setTextFill(Color.BLACK);
-                        setStyle("");
-                    }
-                }
-            }
-        };
-    });*/
 }

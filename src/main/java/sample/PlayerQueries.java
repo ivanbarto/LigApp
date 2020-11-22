@@ -19,6 +19,7 @@ public class PlayerQueries {
     private final String GET_PLAYER_QUERY = "SELECT * FROM player WHERE idPlayer=?";
     private final String GET_ALL_PLAYERS_QUERY = "SELECT * FROM player";
     private final String UPDATE_PLAYER_QUERY = "UPDATE player SET firstName=?,lastName=?,DNI=?,birthDate=?,hasMedicalClearance=?,comments=?,isSuspended=?,numberOfSuspensionDays=?,idTeam=?,photo=? WHERE idPlayer=?";
+    private final String SUSPEND_PLAYER_QUERY = "UPDATE player SET isSuspended=?,numberOfSuspensionDays=? WHERE idPlayer=?";
 
     DatabaseConnection dbConnection;
 
@@ -218,6 +219,26 @@ public class PlayerQueries {
         }
 
         return player;
+    }
+
+    public void suspendPlayer(int numberOfSuspensionDays, int idPlayer) {
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(SUSPEND_PLAYER_QUERY);
+            ps.setBoolean(1,true);
+            ps.setInt(2,numberOfSuspensionDays);
+            ps.setInt(3,idPlayer);
+
+            ps.executeUpdate();
+            ps.close();
+            dbConnection.disconnect();
+
+
+            FxDialogs.showInformation("Suspension de jugador","JUGADOR SUSPENDIDO CON EXITO POR "+numberOfSuspensionDays+" FECHAS");
+
+        } catch (SQLException ex) {
+            FxDialogs.showError("Fallo suspender Jugador",String.valueOf(ex));
+        }
     }
 
 }

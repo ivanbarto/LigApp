@@ -3,12 +3,14 @@ package sample.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.StageStyle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Optional;
 
 public class FxDialogs {
 
@@ -120,11 +122,11 @@ public class FxDialogs {
             return result.get().getText();
         }
     }
-
+*/
     public static String showTextInput(String title, String message, String defaultValue) {
         TextInputDialog dialog = new TextInputDialog(defaultValue);
         dialog.initStyle(StageStyle.UTILITY);
-        dialog.setTitle("Input");
+        dialog.setTitle("Suspensiones");
         dialog.setHeaderText(title);
         dialog.setContentText(message);
 
@@ -136,5 +138,5 @@ public class FxDialogs {
         }
 
     }
-    */
+
 }

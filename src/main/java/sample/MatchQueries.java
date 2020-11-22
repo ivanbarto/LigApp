@@ -15,7 +15,9 @@ public class MatchQueries {
     private final String REMOVE_MATCH_QUERY = "DELETE FROM matches WHERE id = ?";
     private final String GET_MATCH_QUERY = "SELECT * FROM matches WHERE id=?";
     private final String GET_ALL_MATCHES_QUERY = "SELECT * FROM matches";
-    private final String UPDATE_MATCH_QUERY = "UPDATE matches SET accessCode=?,meeting=?,idTeam1=?,idTeam2=?,date=?,time=?,state=?,WHERE id=?";
+    private final String UPDATE_MATCH_QUERY = "UPDATE matches SET accessCode=?,meeting=?,idTeam1=?,idTeam2=?,date=?,time=?,state=? WHERE id=?";
+    private final String GET_PLAYED_MATCHES_QUERY = "SELECT * FROM matches WHERE matches.state = 'Jugado'";
+
 
     DatabaseConnection dbConnection;
 
@@ -151,5 +153,39 @@ public class MatchQueries {
         }
 
         return match;
+    }
+
+    public ObservableList<Match> getPlayedMatches(){
+        ObservableList<Match> playedMatches= FXCollections.observableArrayList();
+
+        try {
+
+            PreparedStatement ps = dbConnection.getConnection().prepareStatement(GET_PLAYED_MATCHES_QUERY);
+
+            ResultSet matchesTable = ps.executeQuery();
+
+            while (matchesTable.next()) {
+
+                Match matchToAdd = new Match();
+                matchToAdd.setIdMatch(matchesTable.getInt("id"));
+                matchToAdd.setAccessCode(matchesTable.getInt("accessCode"));
+                matchToAdd.setMeeting(matchesTable.getInt("meeting"));
+                matchToAdd.setIdTeam1(matchesTable.getInt("idTeam1"));
+                matchToAdd.setIdTeam2(matchesTable.getInt("idTeam2"));
+                matchToAdd.setDate(matchesTable.getDate("date").toLocalDate());
+                matchToAdd.setTime(matchesTable.getString("time"));
+                matchToAdd.setState(matchesTable.getString("state"));
+
+                playedMatches.add(matchToAdd);
+            }
+
+            ps.close();
+            dbConnection.disconnect();
+
+        } catch (SQLException e) {
+            FxDialogs.showError("Error en traer registros",String.valueOf(e));
+        }
+
+        return playedMatches;
     }
 }

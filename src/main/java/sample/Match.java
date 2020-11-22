@@ -125,4 +125,8 @@ public class Match {
     public void setState(String state) {
         this.state.set(state);
     }
+
+    public String toString(){
+        return "Partido "+accessCode.get() + " - Fecha " + meetingProperty().get() + " ("+ state.get() +")";
+    }
 }
