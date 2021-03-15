@@ -15,7 +15,7 @@ public class DatabaseConnection {
     private final String ONLINE_DATABASE_URL = "jdbc:mysql://" + ONLINE_DATABASE_HOST + ":"+ ONLINE_DATABASE_PORT +"/" + DATABASE_NAME + "?useSSL=false";
     private final String DATABASE_URL = "jdbc:mysql://" + LOCAL_DATABASE_HOST + ":"+ ONLINE_DATABASE_PORT +"/" + DATABASE_NAME + "?useSSL=false";
 
-   /* public Connection getConnection(){
+    public Connection getConnection(){
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -27,10 +27,10 @@ public class DatabaseConnection {
         }
 
         return  databaseLink;
-    }*/
+    }
 
     //LOCAL CONNECTION FOR TESTING AND DEMOS
-
+/*
     public Connection getConnection(){
 
         try {
@@ -46,7 +46,7 @@ public class DatabaseConnection {
     }
 
 
-
+*/
     public void disconnect (){
         try{
             this.databaseLink.close();
